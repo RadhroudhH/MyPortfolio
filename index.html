@@ -6,7 +6,6 @@
         <title>Med. Radhi Reychico, Game Developer</title>
         <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Outfit:wght@300;400;500;600&display=swap" rel="stylesheet" />
         <link rel="icon" type="image/png" href="MRR Icon.png" />
-        >
         <style>
             *,
             *::before,
@@ -32,6 +31,7 @@
 
             html {
                 scroll-behavior: smooth;
+                scroll-padding-top: 90px;
             }
 
             body {
@@ -345,6 +345,24 @@
                 align-items: center;
                 justify-content: center;
                 font-size: 3.5rem;
+            }
+
+            .project-thumb-img {
+                position: absolute;
+                inset: 0;
+                width: 100%;
+                height: 100%;
+                object-fit: cover;
+                display: block;
+            }
+
+            .modal-hero-img {
+                position: absolute;
+                inset: 0;
+                width: 100%;
+                height: 100%;
+                object-fit: cover;
+                display: block;
             }
 
             .project-badge {
@@ -987,6 +1005,27 @@
                 color: var(--muted);
             }
 
+            .modal-embed {
+                margin-bottom: 1.5rem;
+            }
+            .modal-embed:empty {
+                display: none;
+            }
+            .modal-embed iframe {
+                width: 100%;
+                max-width: 100%;
+                border-radius: 4px;
+                display: block;
+            }
+            .modal-embed-label {
+                font-size: 0.68rem;
+                letter-spacing: 2.5px;
+                text-transform: uppercase;
+                color: var(--accent);
+                margin-bottom: 0.6rem;
+                font-weight: 600;
+            }
+
             /* ── EARLY PROJECTS (inside Projects section) ─────────────── */
             .early-divider {
                 margin-top: 3.5rem;
@@ -1307,6 +1346,9 @@
                     data-modal-badge-class="badge-game"
                     data-modal-emoji="👻"
                     data-modal-bg="linear-gradient(135deg,#0a0f1a,#1a0a2e)"
+                    data-cover="Neon Ghost Protocol Small.png"
+                    data-modal-banner="Neon Ghost Protocol.png"
+                    data-modal-embed='<iframe frameborder="0" src="https://itch.io/embed/4654476?bg_color=0A0A18&amp;fg_color=E8E8F0&amp;link_color=00E5FF&amp;border_color=AA33FF" width="552" height="167"><a href="https://radhroudh.itch.io/neonghost-protocol">NEON://GHOST_PROTOCOL by Radhroudh</a></iframe>'
                     data-modal-meta="Mobile Tower Defense • Solo Project • Unity • Android"
                     data-modal-desc="A cyberpunk-inspired mobile tower defense game built entirely in Unity. The project focuses on strategic decision-making, tower synergy, and replayability through unique enemy behaviors and upgrade paths."
                     data-modal-detail="**Overview**
@@ -1341,6 +1383,7 @@ Unity, C#, Scriptable Objects, Android Build Pipeline, Blender, Git.
                 >
                     <div class="project-thumb">
                         <div class="project-thumb-bg" style="background: linear-gradient(135deg, #0a0f1a 0%, #1a0a2e 100%)">👻</div>
+                        <img class="project-thumb-img" src="Neon Ghost Protocol Small.png" alt="NEON://GHOST_PROTOCOL cover" onerror="this.style.display = 'none'" />
                         <span class="project-badge badge-game">Personal</span>
                     </div>
                     <div class="project-body">
@@ -1684,6 +1727,7 @@ This project pushed my skills in environmental storytelling, pacing a discovery-
                         <div class="modal-detail-label">About this project</div>
                         <div class="modal-detail-text" id="modalDetail"></div>
                     </div>
+                    <div class="modal-embed" id="modalEmbed"></div>
                     <div class="modal-tags" id="modalTags"></div>
                 </div>
             </div>
@@ -1843,7 +1887,7 @@ This project pushed my skills in environmental storytelling, pacing a discovery-
                                 linkedin.com/in/mohamed-radhi-reychico
                             </div>
                         </a>
-                        <a href="https://twitter.com/reychico" class="contact-link" target="_blank" rel="noopener">
+                        <a href="https://twitter.com/radhroudhH" class="contact-link" target="_blank" rel="noopener">
                             <div class="contact-icon">🐦</div>
                             <div>
                                 <div style="font-size: 0.75rem; color: var(--muted); margin-bottom: 2px">Twitter / X</div>
@@ -1906,15 +1950,38 @@ This project pushed my skills in environmental storytelling, pacing a discovery-
 
             function openModal(card) {
                 const d = card.dataset;
-                document.getElementById("modalHero").style.background = d.modalBg;
-                // emoji inside hero (remove old ones first)
+                const hero = document.getElementById("modalHero");
+                hero.style.background = d.modalBg;
+
+                // Clear previous emoji/banner
                 const oldEmoji = document.getElementById("modalEmoji");
                 if (oldEmoji) oldEmoji.remove();
-                const emojiEl = document.createElement("span");
-                emojiEl.id = "modalEmoji";
-                emojiEl.style.cssText = "font-size:5rem;pointer-events:none;";
-                emojiEl.textContent = d.modalEmoji;
-                document.getElementById("modalHero").appendChild(emojiEl);
+                const oldBanner = document.getElementById("modalBannerImg");
+                if (oldBanner) oldBanner.remove();
+
+                if (d.modalBanner) {
+                    // Use banner image; emoji fallback shown only if image fails to load
+                    const img = document.createElement("img");
+                    img.id = "modalBannerImg";
+                    img.className = "modal-hero-img";
+                    img.src = d.modalBanner;
+                    img.alt = d.modalTitle + " banner";
+                    const emojiEl = document.createElement("span");
+                    emojiEl.id = "modalEmoji";
+                    emojiEl.style.cssText = "font-size:5rem;pointer-events:none;";
+                    emojiEl.textContent = d.modalEmoji;
+                    img.onerror = () => {
+                        img.style.display = "none";
+                    };
+                    hero.appendChild(emojiEl);
+                    hero.appendChild(img);
+                } else {
+                    const emojiEl = document.createElement("span");
+                    emojiEl.id = "modalEmoji";
+                    emojiEl.style.cssText = "font-size:5rem;pointer-events:none;";
+                    emojiEl.textContent = d.modalEmoji;
+                    hero.appendChild(emojiEl);
+                }
 
                 const badge = document.getElementById("modalBadge");
                 badge.textContent = d.modalBadge;
@@ -1937,6 +2004,14 @@ This project pushed my skills in environmental storytelling, pacing a discovery-
                         return `<p style="margin-bottom:1.1rem;">${html}</p>`;
                     })
                     .join("");
+
+                // Render embed (e.g. itch.io iframe) if present
+                const embedEl = document.getElementById("modalEmbed");
+                if (d.modalEmbed) {
+                    embedEl.innerHTML = '<div class="modal-embed-label">Play / Download</div>' + d.modalEmbed;
+                } else {
+                    embedEl.innerHTML = "";
+                }
 
                 const tagsEl = document.getElementById("modalTags");
                 tagsEl.innerHTML = "";
