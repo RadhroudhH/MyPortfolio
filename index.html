@@ -354,6 +354,19 @@
                 height: 100%;
                 object-fit: cover;
                 display: block;
+                opacity: 1;
+                filter: blur(0);
+                transition:
+                    opacity 0.45s ease,
+                    filter 0.45s ease,
+                    transform 0.45s ease;
+            }
+
+            /* On hover: cover image blurs out and fades, revealing the emoji + gradient behind it */
+            .project-card:hover .project-thumb-img {
+                opacity: 0;
+                filter: blur(10px);
+                transform: scale(1.04);
             }
 
             .modal-hero-img {
