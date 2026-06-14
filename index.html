@@ -1,0 +1,2080 @@
+<!doctype html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>Med. Radhi Reychico, Game Developer</title>
+        <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Outfit:wght@300;400;500;600&display=swap" rel="stylesheet" />
+        <style>
+            *,
+            *::before,
+            *::after {
+                box-sizing: border-box;
+                margin: 0;
+                padding: 0;
+            }
+
+            :root {
+                --bg: #0a0c10;
+                --bg2: #111318;
+                --bg3: #181b22;
+                --accent: #00e5a0;
+                --accent2: #ff6b35;
+                --text: #e8eaf0;
+                --muted: #7a8094;
+                --card: #13161e;
+                --border: rgba(255, 255, 255, 0.07);
+                --font-display: "Bebas Neue", sans-serif;
+                --font-body: "Outfit", sans-serif;
+            }
+
+            html {
+                scroll-behavior: smooth;
+            }
+
+            body {
+                background: var(--bg);
+                color: var(--text);
+                font-family: var(--font-body);
+                font-weight: 300;
+                line-height: 1.7;
+                overflow-x: hidden;
+            }
+
+            /* NAV */
+            nav {
+                position: fixed;
+                top: 0;
+                left: 0;
+                right: 0;
+                z-index: 100;
+                display: flex;
+                align-items: center;
+                justify-content: space-between;
+                padding: 1.2rem 4rem;
+                background: rgba(10, 12, 16, 0.85);
+                backdrop-filter: blur(12px);
+                border-bottom: 1px solid var(--border);
+            }
+
+            .nav-logo {
+                font-family: var(--font-display);
+                font-size: 1.4rem;
+                letter-spacing: 2px;
+                color: var(--accent);
+            }
+
+            .nav-links {
+                display: flex;
+                gap: 2.5rem;
+                list-style: none;
+            }
+
+            .nav-links a {
+                text-decoration: none;
+                color: var(--muted);
+                font-size: 0.85rem;
+                letter-spacing: 1.5px;
+                text-transform: uppercase;
+                transition: color 0.2s;
+            }
+
+            .nav-links a:hover {
+                color: var(--accent);
+            }
+
+            /* HERO */
+            #hero {
+                min-height: 100vh;
+                display: flex;
+                align-items: center;
+                padding: 0 4rem;
+                position: relative;
+                overflow: hidden;
+            }
+
+            .hero-grid {
+                position: absolute;
+                inset: 0;
+                background-image: linear-gradient(rgba(0, 229, 160, 0.04) 1px, transparent 1px), linear-gradient(90deg, rgba(0, 229, 160, 0.04) 1px, transparent 1px);
+                background-size: 60px 60px;
+                pointer-events: none;
+            }
+
+            .hero-glow {
+                position: absolute;
+                width: 600px;
+                height: 600px;
+                border-radius: 50%;
+                background: radial-gradient(circle, rgba(0, 229, 160, 0.08) 0%, transparent 70%);
+                top: 50%;
+                left: 50%;
+                transform: translate(-50%, -50%);
+                pointer-events: none;
+            }
+
+            .hero-content {
+                position: relative;
+                z-index: 2;
+                max-width: 800px;
+            }
+
+            .hero-tag {
+                display: inline-block;
+                font-size: 0.75rem;
+                letter-spacing: 3px;
+                text-transform: uppercase;
+                color: var(--accent);
+                border: 1px solid rgba(0, 229, 160, 0.3);
+                padding: 0.35rem 1rem;
+                border-radius: 2px;
+                margin-bottom: 1.5rem;
+            }
+
+            .hero-name {
+                font-family: var(--font-display);
+                font-size: clamp(3.5rem, 8vw, 6.5rem);
+                line-height: 0.95;
+                letter-spacing: 3px;
+                color: #fff;
+                margin-bottom: 0.5rem;
+            }
+
+            .hero-name span {
+                color: var(--accent);
+            }
+
+            .hero-alias {
+                font-family: var(--font-display);
+                font-size: clamp(1.2rem, 3vw, 2rem);
+                letter-spacing: 6px;
+                color: var(--muted);
+                margin-bottom: 1.5rem;
+            }
+
+            .hero-desc {
+                max-width: 520px;
+                color: var(--muted);
+                font-size: 1rem;
+                margin-bottom: 2.5rem;
+            }
+
+            .hero-cta {
+                display: flex;
+                gap: 1rem;
+                flex-wrap: wrap;
+            }
+
+            .btn-primary {
+                padding: 0.8rem 2rem;
+                background: var(--accent);
+                color: #0a0c10;
+                font-family: var(--font-body);
+                font-size: 0.85rem;
+                font-weight: 600;
+                letter-spacing: 1.5px;
+                text-transform: uppercase;
+                text-decoration: none;
+                border: none;
+                border-radius: 2px;
+                cursor: pointer;
+                transition:
+                    opacity 0.2s,
+                    transform 0.2s;
+                display: inline-block;
+            }
+
+            .btn-primary:hover {
+                opacity: 0.85;
+                transform: translateY(-1px);
+            }
+
+            .btn-ghost {
+                padding: 0.8rem 2rem;
+                background: transparent;
+                color: var(--text);
+                font-family: var(--font-body);
+                font-size: 0.85rem;
+                font-weight: 500;
+                letter-spacing: 1.5px;
+                text-transform: uppercase;
+                text-decoration: none;
+                border: 1px solid var(--border);
+                border-radius: 2px;
+                cursor: pointer;
+                transition:
+                    border-color 0.2s,
+                    color 0.2s;
+                display: inline-block;
+            }
+
+            .btn-ghost:hover {
+                border-color: var(--accent);
+                color: var(--accent);
+            }
+
+            .hero-scroll {
+                position: absolute;
+                bottom: 2rem;
+                left: 50%;
+                transform: translateX(-50%);
+                display: flex;
+                flex-direction: column;
+                align-items: center;
+                gap: 0.5rem;
+                color: var(--muted);
+                font-size: 0.7rem;
+                letter-spacing: 2px;
+                text-transform: uppercase;
+            }
+
+            .scroll-line {
+                width: 1px;
+                height: 40px;
+                background: linear-gradient(to bottom, var(--muted), transparent);
+                animation: scrollDown 1.8s ease-in-out infinite;
+            }
+
+            @keyframes scrollDown {
+                0%,
+                100% {
+                    opacity: 0.3;
+                    transform: scaleY(1);
+                }
+                50% {
+                    opacity: 1;
+                    transform: scaleY(1.3);
+                }
+            }
+
+            /* SECTION SHARED */
+            section {
+                padding: 6rem 4rem;
+            }
+
+            .section-label {
+                font-size: 0.7rem;
+                letter-spacing: 4px;
+                text-transform: uppercase;
+                color: var(--accent);
+                margin-bottom: 0.8rem;
+            }
+
+            .section-title {
+                font-family: var(--font-display);
+                font-size: clamp(2.5rem, 5vw, 4rem);
+                letter-spacing: 2px;
+                color: #fff;
+                margin-bottom: 1rem;
+            }
+
+            .section-line {
+                width: 60px;
+                height: 2px;
+                background: var(--accent);
+                margin-bottom: 3rem;
+            }
+
+            /* PROJECTS */
+            #projects {
+                background: var(--bg);
+            }
+
+            .projects-filter {
+                display: flex;
+                gap: 0.75rem;
+                margin-bottom: 3rem;
+                flex-wrap: wrap;
+            }
+
+            .filter-btn {
+                padding: 0.4rem 1.2rem;
+                font-family: var(--font-body);
+                font-size: 0.78rem;
+                letter-spacing: 1.5px;
+                text-transform: uppercase;
+                border: 1px solid var(--border);
+                background: transparent;
+                color: var(--muted);
+                border-radius: 2px;
+                cursor: pointer;
+                transition: all 0.2s;
+            }
+
+            .filter-btn.active,
+            .filter-btn:hover {
+                border-color: var(--accent);
+                color: var(--accent);
+                background: rgba(0, 229, 160, 0.05);
+            }
+
+            .projects-grid {
+                display: grid;
+                grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+                gap: 1.5rem;
+            }
+
+            .project-card {
+                background: var(--card);
+                border: 1px solid var(--border);
+                border-radius: 4px;
+                overflow: hidden;
+                transition:
+                    transform 0.25s,
+                    border-color 0.25s;
+                cursor: pointer;
+            }
+
+            .project-card:hover {
+                transform: translateY(-4px);
+                border-color: rgba(0, 229, 160, 0.3);
+            }
+
+            .project-thumb {
+                height: 180px;
+                position: relative;
+                overflow: hidden;
+            }
+
+            .project-thumb-bg {
+                width: 100%;
+                height: 100%;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                font-size: 3.5rem;
+            }
+
+            .project-badge {
+                position: absolute;
+                top: 0.75rem;
+                right: 0.75rem;
+                font-size: 0.65rem;
+                letter-spacing: 1.5px;
+                text-transform: uppercase;
+                padding: 0.25rem 0.6rem;
+                border-radius: 2px;
+                font-weight: 600;
+            }
+
+            .badge-game {
+                background: rgba(0, 229, 160, 0.15);
+                color: var(--accent);
+            }
+            .badge-music {
+                background: rgba(255, 107, 53, 0.15);
+                color: var(--accent2);
+            }
+            .badge-web {
+                background: rgba(100, 150, 255, 0.15);
+                color: #6496ff;
+            }
+
+            .project-body {
+                padding: 1.25rem;
+            }
+
+            .project-title {
+                font-family: var(--font-display);
+                font-size: 1.4rem;
+                letter-spacing: 1px;
+                color: #fff;
+                margin-bottom: 0.4rem;
+            }
+
+            .project-desc {
+                font-size: 0.85rem;
+                color: var(--muted);
+                margin-bottom: 1rem;
+                line-height: 1.6;
+            }
+
+            .project-tags {
+                display: flex;
+                gap: 0.5rem;
+                flex-wrap: wrap;
+            }
+
+            .tag {
+                font-size: 0.65rem;
+                letter-spacing: 1px;
+                text-transform: uppercase;
+                padding: 0.2rem 0.6rem;
+                border: 1px solid var(--border);
+                border-radius: 2px;
+                color: var(--muted);
+            }
+
+            /* SKILLS */
+            #skills {
+                background: var(--bg2);
+            }
+
+            .skills-grid {
+                display: grid;
+                grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+                gap: 1.5rem;
+            }
+
+            .skill-group {
+                background: var(--card);
+                border: 1px solid var(--border);
+                border-radius: 4px;
+                padding: 1.5rem;
+            }
+
+            .skill-group-icon {
+                font-size: 1.8rem;
+                margin-bottom: 0.8rem;
+            }
+
+            .skill-group-title {
+                font-family: var(--font-display);
+                font-size: 1.1rem;
+                letter-spacing: 2px;
+                color: var(--accent);
+                margin-bottom: 1rem;
+            }
+
+            .skill-list {
+                list-style: none;
+                display: flex;
+                flex-direction: column;
+                gap: 0.5rem;
+            }
+
+            .skill-list li {
+                font-size: 0.85rem;
+                color: var(--muted);
+                display: flex;
+                align-items: center;
+                gap: 0.5rem;
+            }
+
+            .skill-list li::before {
+                content: "";
+                width: 4px;
+                height: 4px;
+                background: var(--accent);
+                border-radius: 50%;
+                flex-shrink: 0;
+            }
+
+            /* ABOUT */
+            #about {
+                background: var(--bg);
+            }
+
+            .about-layout {
+                display: grid;
+                grid-template-columns: 1fr 1fr;
+                gap: 4rem;
+                align-items: start;
+            }
+
+            .about-text p {
+                color: var(--muted);
+                font-size: 0.95rem;
+                margin-bottom: 1rem;
+            }
+
+            .about-text p strong {
+                color: var(--text);
+                font-weight: 500;
+            }
+
+            .about-stats {
+                display: grid;
+                grid-template-columns: 1fr 1fr;
+                gap: 1rem;
+            }
+
+            .stat-card {
+                background: var(--card);
+                border: 1px solid var(--border);
+                border-radius: 4px;
+                padding: 1.5rem;
+                text-align: center;
+            }
+
+            .stat-num {
+                font-family: var(--font-display);
+                font-size: 2.5rem;
+                color: var(--accent);
+                letter-spacing: 2px;
+            }
+
+            .stat-label {
+                font-size: 0.75rem;
+                letter-spacing: 2px;
+                text-transform: uppercase;
+                color: var(--muted);
+                margin-top: 0.25rem;
+            }
+
+            /* CONTACT */
+            #contact {
+                background: var(--bg3);
+            }
+
+            .contact-layout {
+                display: grid;
+                grid-template-columns: 1fr 1fr;
+                gap: 4rem;
+                align-items: start;
+            }
+
+            .contact-intro {
+                color: var(--muted);
+                font-size: 0.95rem;
+            }
+
+            .contact-links {
+                display: flex;
+                flex-direction: column;
+                gap: 1rem;
+                margin-top: 2rem;
+            }
+
+            .contact-link {
+                display: flex;
+                align-items: center;
+                gap: 1rem;
+                padding: 1rem 1.25rem;
+                background: var(--card);
+                border: 1px solid var(--border);
+                border-radius: 4px;
+                text-decoration: none;
+                color: var(--text);
+                font-size: 0.9rem;
+                transition:
+                    border-color 0.2s,
+                    color 0.2s;
+            }
+
+            .contact-link:hover {
+                border-color: var(--accent);
+                color: var(--accent);
+            }
+
+            .contact-icon {
+                width: 36px;
+                height: 36px;
+                border-radius: 4px;
+                background: rgba(0, 229, 160, 0.1);
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                font-size: 1.1rem;
+                flex-shrink: 0;
+            }
+
+            .contact-form {
+                display: flex;
+                flex-direction: column;
+                gap: 1rem;
+            }
+
+            .form-group {
+                display: flex;
+                flex-direction: column;
+                gap: 0.4rem;
+            }
+
+            .form-group label {
+                font-size: 0.75rem;
+                letter-spacing: 1.5px;
+                text-transform: uppercase;
+                color: var(--muted);
+            }
+
+            .form-group input,
+            .form-group textarea {
+                background: var(--card);
+                border: 1px solid var(--border);
+                border-radius: 4px;
+                padding: 0.75rem 1rem;
+                color: var(--text);
+                font-family: var(--font-body);
+                font-size: 0.9rem;
+                outline: none;
+                transition: border-color 0.2s;
+                resize: vertical;
+            }
+
+            .form-group input:focus,
+            .form-group textarea:focus {
+                border-color: var(--accent);
+            }
+
+            /* FOOTER */
+            footer {
+                padding: 2rem 4rem;
+                background: var(--bg);
+                border-top: 1px solid var(--border);
+                display: flex;
+                align-items: center;
+                justify-content: space-between;
+                flex-wrap: wrap;
+                gap: 1rem;
+            }
+
+            .footer-copy {
+                font-size: 0.8rem;
+                color: var(--muted);
+            }
+
+            .footer-logo {
+                font-family: var(--font-display);
+                font-size: 1.2rem;
+                letter-spacing: 2px;
+                color: var(--accent);
+            }
+
+            .footer-social {
+                display: flex;
+                gap: 1.5rem;
+            }
+
+            .footer-social a {
+                color: var(--muted);
+                text-decoration: none;
+                font-size: 0.8rem;
+                letter-spacing: 1px;
+                text-transform: uppercase;
+                transition: color 0.2s;
+            }
+
+            .footer-social a:hover {
+                color: var(--accent);
+            }
+
+            /* ANIMATIONS */
+            @keyframes fadeUp {
+                from {
+                    opacity: 0;
+                    transform: translateY(20px);
+                }
+                to {
+                    opacity: 1;
+                    transform: translateY(0);
+                }
+            }
+
+            .fade-up {
+                animation: fadeUp 0.7s ease forwards;
+            }
+            .delay-1 {
+                animation-delay: 0.1s;
+            }
+            .delay-2 {
+                animation-delay: 0.2s;
+            }
+            .delay-3 {
+                animation-delay: 0.35s;
+            }
+            .delay-4 {
+                animation-delay: 0.5s;
+            }
+
+            /* SCROLL REVEAL */
+            .reveal {
+                opacity: 0;
+                transform: translateY(28px);
+                transition:
+                    opacity 0.6s ease,
+                    transform 0.6s cubic-bezier(0.22, 1, 0.36, 1);
+                will-change: opacity, transform;
+            }
+            .reveal.visible {
+                opacity: 1;
+                transform: translateY(0);
+            }
+            .reveal.d1 {
+                transition-delay: 0.06s;
+            }
+            .reveal.d2 {
+                transition-delay: 0.12s;
+            }
+            .reveal.d3 {
+                transition-delay: 0.18s;
+            }
+            .reveal.d4 {
+                transition-delay: 0.24s;
+            }
+            @media (prefers-reduced-motion: reduce) {
+                .reveal {
+                    opacity: 1;
+                    transform: none;
+                    transition: none;
+                }
+            }
+
+            /* NAV ACTIVE STATE */
+            .nav-links a.active {
+                color: var(--accent);
+            }
+            .nav-links a {
+                position: relative;
+                padding-bottom: 2px;
+            }
+            .nav-links a::after {
+                content: "";
+                position: absolute;
+                left: 0;
+                bottom: -2px;
+                width: 0;
+                height: 1px;
+                background: var(--accent);
+                transition: width 0.25s ease;
+            }
+            .nav-links a:hover::after,
+            .nav-links a.active::after {
+                width: 100%;
+            }
+
+            /* PROJECT CARD META */
+            .project-meta {
+                font-size: 0.68rem;
+                letter-spacing: 0.5px;
+                text-transform: uppercase;
+                color: rgba(0, 229, 160, 0.65);
+                margin-bottom: 0.55rem;
+                font-weight: 500;
+            }
+
+            .hero-links {
+                display: flex;
+                gap: 0.8rem;
+                flex-wrap: wrap;
+                margin-top: 1.2rem;
+            }
+
+            .hero-link-pill {
+                display: inline-flex;
+                align-items: center;
+                gap: 0.5rem;
+                padding: 0.5rem 1.1rem;
+                font-size: 0.78rem;
+                letter-spacing: 1px;
+                text-transform: uppercase;
+                color: var(--muted);
+                border: 1px solid var(--border);
+                border-radius: 20px;
+                text-decoration: none;
+                transition:
+                    border-color 0.2s,
+                    color 0.2s;
+            }
+
+            .hero-link-pill:hover {
+                border-color: var(--accent);
+                color: var(--accent);
+            }
+
+            /* ACHIEVEMENTS */
+            #achievements {
+                background: var(--bg2);
+            }
+
+            .achievements-grid {
+                display: grid;
+                grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+                gap: 1.25rem;
+            }
+
+            .achievement-card {
+                background: var(--card);
+                border: 1px solid var(--border);
+                border-radius: 4px;
+                padding: 1.4rem 1.5rem;
+                display: flex;
+                align-items: flex-start;
+                gap: 1rem;
+                transition:
+                    border-color 0.25s,
+                    transform 0.25s;
+            }
+
+            .achievement-card:hover {
+                border-color: rgba(0, 229, 160, 0.3);
+                transform: translateY(-2px);
+            }
+
+            .achievement-icon {
+                font-size: 1.6rem;
+                flex-shrink: 0;
+                line-height: 1;
+            }
+
+            .achievement-title {
+                font-family: var(--font-display);
+                font-size: 1.05rem;
+                letter-spacing: 1px;
+                color: #fff;
+                margin-bottom: 0.25rem;
+            }
+
+            .achievement-sub {
+                font-size: 0.8rem;
+                color: var(--muted);
+            }
+
+            /* ── PROJECT MODAL ──────────────────────────────────────────── */
+            .modal-overlay {
+                position: fixed;
+                inset: 0;
+                z-index: 500;
+                background: rgba(6, 8, 12, 0.75);
+                backdrop-filter: blur(10px);
+                -webkit-backdrop-filter: blur(10px);
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                padding: 2rem;
+                opacity: 0;
+                pointer-events: none;
+                transition: opacity 0.3s ease;
+            }
+
+            .modal-overlay.active {
+                opacity: 1;
+                pointer-events: all;
+            }
+
+            .modal-box {
+                background: #13161e;
+                border: 1px solid rgba(255, 255, 255, 0.1);
+                border-radius: 8px;
+                width: 100%;
+                max-width: 780px;
+                max-height: 88vh;
+                overflow-y: auto;
+                position: relative;
+                transform: translateY(24px) scale(0.97);
+                transition:
+                    transform 0.35s cubic-bezier(0.34, 1.2, 0.64, 1),
+                    opacity 0.3s ease;
+                opacity: 0;
+                scrollbar-width: thin;
+                scrollbar-color: rgba(0, 229, 160, 0.2) transparent;
+            }
+
+            .modal-overlay.active .modal-box {
+                transform: translateY(0) scale(1);
+                opacity: 1;
+            }
+
+            .modal-hero {
+                width: 100%;
+                aspect-ratio: 16/7;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                font-size: 5rem;
+                border-radius: 8px 8px 0 0;
+                position: relative;
+                overflow: hidden;
+            }
+
+            .modal-close {
+                position: absolute;
+                top: 1rem;
+                right: 1rem;
+                width: 36px;
+                height: 36px;
+                background: rgba(0, 0, 0, 0.55);
+                border: 1px solid rgba(255, 255, 255, 0.15);
+                border-radius: 50%;
+                cursor: pointer;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                color: #fff;
+                font-size: 1.1rem;
+                line-height: 1;
+                transition:
+                    background 0.2s,
+                    border-color 0.2s;
+                z-index: 10;
+            }
+
+            .modal-close:hover {
+                background: rgba(0, 229, 160, 0.2);
+                border-color: var(--accent);
+            }
+
+            .modal-body {
+                padding: 2rem 2.2rem 2.2rem;
+            }
+
+            .modal-badge {
+                display: inline-block;
+                font-size: 0.65rem;
+                letter-spacing: 1.5px;
+                text-transform: uppercase;
+                padding: 0.25rem 0.7rem;
+                border-radius: 2px;
+                font-weight: 600;
+                margin-bottom: 0.8rem;
+            }
+
+            .modal-title {
+                font-family: var(--font-display);
+                font-size: 2.2rem;
+                letter-spacing: 2px;
+                color: #fff;
+                margin-bottom: 0.5rem;
+            }
+
+            .modal-meta {
+                font-size: 0.78rem;
+                letter-spacing: 1px;
+                color: var(--accent);
+                text-transform: uppercase;
+                margin-bottom: 1rem;
+            }
+
+            .modal-meta:empty {
+                display: none;
+            }
+
+            .modal-desc {
+                font-size: 0.95rem;
+                color: var(--muted);
+                line-height: 1.8;
+                margin-bottom: 1.5rem;
+            }
+
+            .modal-detail-block {
+                background: rgba(255, 255, 255, 0.03);
+                border: 1px solid var(--border);
+                border-radius: 4px;
+                padding: 1.2rem 1.4rem;
+                margin-bottom: 1.5rem;
+            }
+
+            .modal-detail-label {
+                font-size: 0.68rem;
+                letter-spacing: 2.5px;
+                text-transform: uppercase;
+                color: var(--accent);
+                margin-bottom: 0.5rem;
+                font-weight: 600;
+            }
+
+            .modal-detail-text {
+                font-size: 0.88rem;
+                color: var(--muted);
+                line-height: 1.75;
+            }
+
+            .modal-tags {
+                display: flex;
+                gap: 0.5rem;
+                flex-wrap: wrap;
+            }
+
+            .modal-tag {
+                font-size: 0.7rem;
+                letter-spacing: 1px;
+                text-transform: uppercase;
+                padding: 0.3rem 0.75rem;
+                border: 1px solid var(--border);
+                border-radius: 2px;
+                color: var(--muted);
+            }
+
+            /* ── EARLY PROJECTS (inside Projects section) ─────────────── */
+            .early-divider {
+                margin-top: 3.5rem;
+                border-top: 1px solid var(--border);
+                padding-top: 2.5rem;
+            }
+
+            .early-toggle-wrap {
+                display: flex;
+                align-items: center;
+                gap: 1.5rem;
+                margin-bottom: 0;
+            }
+
+            #earlyToggleBtn {
+                display: inline-flex;
+                align-items: center;
+                gap: 0.6rem;
+                padding: 0.7rem 1.6rem;
+                background: transparent;
+                color: var(--accent);
+                font-family: var(--font-body);
+                font-size: 0.85rem;
+                font-weight: 600;
+                letter-spacing: 1.5px;
+                text-transform: uppercase;
+                border: 1px solid rgba(0, 229, 160, 0.4);
+                border-radius: 2px;
+                cursor: pointer;
+                transition:
+                    background 0.2s,
+                    color 0.2s;
+            }
+
+            #earlyToggleBtn:hover {
+                background: rgba(0, 229, 160, 0.07);
+            }
+
+            #earlyToggleBtn .arrow {
+                display: inline-block;
+                transition: transform 0.3s ease;
+                font-style: normal;
+                font-size: 0.75rem;
+            }
+
+            #earlyToggleBtn.open .arrow {
+                transform: rotate(180deg);
+            }
+
+            /* The collapsible wrapper */
+            #earlyList {
+                overflow: hidden;
+                max-height: 0;
+                opacity: 0;
+                transition:
+                    max-height 0.5s cubic-bezier(0.4, 0, 0.2, 1),
+                    opacity 0.35s ease,
+                    margin-top 0.3s ease;
+                margin-top: 0;
+            }
+
+            #earlyList.open {
+                max-height: 3000px;
+                opacity: 1;
+                margin-top: 2rem;
+            }
+
+            /* Individual accordion rows */
+            .early-item {
+                border-top: 1px solid var(--border);
+            }
+
+            .early-item:last-child {
+                border-bottom: 1px solid var(--border);
+            }
+
+            .early-header {
+                display: flex;
+                align-items: center;
+                justify-content: space-between;
+                padding: 1.1rem 0.5rem;
+                cursor: pointer;
+                gap: 2rem;
+                transition: background 0.15s;
+                border-radius: 2px;
+            }
+
+            .early-header:hover {
+                background: rgba(255, 255, 255, 0.02);
+            }
+
+            .early-header-left {
+                display: flex;
+                align-items: baseline;
+                gap: 2rem;
+                flex: 1;
+                min-width: 0;
+            }
+
+            .early-game-title {
+                font-family: var(--font-display);
+                font-size: 1.25rem;
+                letter-spacing: 1.5px;
+                color: #fff;
+                white-space: nowrap;
+                flex-shrink: 0;
+            }
+
+            .early-game-teaser {
+                font-size: 0.82rem;
+                color: var(--muted);
+                white-space: nowrap;
+                overflow: hidden;
+                text-overflow: ellipsis;
+            }
+
+            .early-game-teaser span {
+                color: rgba(0, 229, 160, 0.7);
+                font-weight: 500;
+                margin-right: 0.3rem;
+            }
+
+            .early-chevron {
+                width: 20px;
+                height: 20px;
+                border-right: 2px solid var(--muted);
+                border-bottom: 2px solid var(--muted);
+                transform: rotate(45deg);
+                transition:
+                    transform 0.3s ease,
+                    border-color 0.2s;
+                flex-shrink: 0;
+                margin-right: 0.5rem;
+                margin-bottom: 4px;
+            }
+
+            .early-item.open .early-chevron {
+                transform: rotate(-135deg);
+                border-color: var(--accent);
+                margin-bottom: -4px;
+            }
+
+            /* Accordion body */
+            .early-body {
+                display: grid;
+                grid-template-rows: 0fr;
+                transition: grid-template-rows 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+            }
+
+            .early-item.open .early-body {
+                grid-template-rows: 1fr;
+            }
+
+            .early-body-inner {
+                overflow: hidden;
+            }
+
+            .early-body-content {
+                display: grid;
+                grid-template-columns: 280px 1fr;
+                gap: 2rem;
+                padding: 0 0.5rem 1.8rem;
+                align-items: start;
+            }
+
+            .early-img {
+                width: 100%;
+                aspect-ratio: 16/9;
+                object-fit: cover;
+                border-radius: 4px;
+                border: 1px solid var(--border);
+                background: var(--card);
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                font-size: 3rem;
+                overflow: hidden;
+            }
+
+            .early-img-placeholder {
+                width: 100%;
+                aspect-ratio: 16/9;
+                border-radius: 4px;
+                border: 1px solid var(--border);
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                font-size: 3rem;
+            }
+
+            .early-detail-title {
+                font-family: var(--font-display);
+                font-size: 1.5rem;
+                letter-spacing: 1px;
+                color: #fff;
+                margin-bottom: 0.5rem;
+            }
+
+            .early-detail-learned {
+                font-size: 0.82rem;
+                letter-spacing: 1px;
+                text-transform: uppercase;
+                color: var(--accent);
+                margin-bottom: 0.75rem;
+                font-weight: 500;
+            }
+
+            .early-detail-desc {
+                font-size: 0.9rem;
+                color: var(--muted);
+                line-height: 1.75;
+            }
+
+            @media (max-width: 768px) {
+                nav {
+                    padding: 1rem 1.5rem;
+                }
+                .nav-links {
+                    display: none;
+                }
+                section {
+                    padding: 4rem 1.5rem;
+                }
+                #hero {
+                    padding: 0 1.5rem;
+                    min-height: 100svh;
+                }
+                .about-layout,
+                .contact-layout {
+                    grid-template-columns: 1fr;
+                    gap: 2rem;
+                }
+                footer {
+                    padding: 1.5rem;
+                    flex-direction: column;
+                    text-align: center;
+                }
+                .projects-grid {
+                    grid-template-columns: 1fr;
+                }
+                .skills-grid {
+                    grid-template-columns: 1fr 1fr;
+                }
+                .about-stats {
+                    grid-template-columns: 1fr 1fr;
+                }
+                .early-body-content {
+                    grid-template-columns: 1fr;
+                }
+                .early-header-left {
+                    flex-direction: column;
+                    gap: 0.2rem;
+                }
+                .early-game-teaser {
+                    white-space: normal;
+                }
+            }
+        </style>
+    </head>
+    <body>
+        <!-- NAV -->
+        <nav>
+            <div class="nav-logo">MRR</div>
+            <ul class="nav-links">
+                <li><a href="#projects">Projects</a></li>
+                <li><a href="#achievements">Achievements</a></li>
+                <li><a href="#skills">Skills</a></li>
+                <li><a href="#about">About</a></li>
+                <li><a href="#contact">Contact</a></li>
+            </ul>
+            <a href="#contact" class="btn-primary" style="padding: 0.5rem 1.25rem; font-size: 0.75rem">Hire Me</a>
+        </nav>
+
+        <!-- HERO -->
+        <section id="hero">
+            <div class="hero-grid"></div>
+            <div class="hero-glow"></div>
+            <div class="hero-content">
+                <div class="hero-tag fade-up">Unity Game Developer · Game Designer</div>
+                <h1 class="hero-name fade-up delay-1">MOHAMED<br /><span>RADHI</span><br />REYCHICO</h1>
+                <div class="hero-alias fade-up delay-2">GAME DEVELOPER · TUNISIA</div>
+                <p class="hero-desc fade-up delay-3">Building gameplay systems, mechanics, and full game projects in Unity & C#, from award-winning game jam entries to a solo cyberpunk mobile tower defense. Based in Tunisia.</p>
+                <div class="hero-cta fade-up delay-4">
+                    <a href="#projects" class="btn-primary">Browse My Work</a>
+                    <a href="#contact" class="btn-ghost">Get In Touch</a>
+                </div>
+                <div class="hero-links fade-up delay-4">
+                    <a href="#" class="hero-link-pill">📄 Resume</a>
+                    <a href="https://github.com/reychico" class="hero-link-pill" target="_blank" rel="noopener">⚙️ GitHub</a>
+                    <a href="https://reychico.itch.io" class="hero-link-pill" target="_blank" rel="noopener">🎮 Itch.io</a>
+                </div>
+            </div>
+            <div class="hero-scroll">
+                <div class="scroll-line"></div>
+                Scroll
+            </div>
+        </section>
+
+        <!-- PROJECTS -->
+        <section id="projects">
+            <div class="section-label">Selected Work</div>
+            <h2 class="section-title">Projects</h2>
+            <div class="section-line"></div>
+
+            <div class="projects-filter">
+                <button class="filter-btn active" data-filter="all">All</button>
+                <button class="filter-btn" data-filter="jam">Game Jams</button>
+                <button class="filter-btn" data-filter="personal">Personal</button>
+                <button class="filter-btn" data-filter="academic">Academic</button>
+            </div>
+
+            <div class="projects-grid" id="projectsGrid">
+                <div
+                    class="project-card"
+                    data-category="personal"
+                    data-modal-title="NEON://GHOST_PROTOCOL/"
+                    data-modal-badge="Personal"
+                    data-modal-badge-class="badge-game"
+                    data-modal-emoji="👻"
+                    data-modal-bg="linear-gradient(135deg,#0a0f1a,#1a0a2e)"
+                    data-modal-meta="Mobile Tower Defense • Solo Project • Unity • Android"
+                    data-modal-desc="A cyberpunk-inspired mobile tower defense game built entirely in Unity. The project focuses on strategic decision-making, tower synergy, and replayability through unique enemy behaviors and upgrade paths."
+                    data-modal-detail="**Overview**
+NEON://GHOST_PROTOCOL/ is a cyberpunk-inspired mobile tower defense game built entirely in Unity. The project focuses on strategic decision-making, tower synergy, and replayability through unique enemy behaviors and upgrade paths. The game is currently being developed as a live project, with community feedback shaping future updates and gameplay improvements.
+
+**My Responsibilities**
+As the sole developer, I was responsible for gameplay programming, game design, enemy AI systems, tower design and balancing, UI implementation, mobile optimization, level design, audio integration, and testing and bug fixing.
+
+**Technical Highlights**
+Three core turret types (Gunner, Sniper, and Slower), each with 6 upgrade tiers (L1 to L6) that meaningfully change how the turret plays. The Gunner fires fast at close range for medium DPS, the Sniper hits hard from long range but slowly, and the Slower deals low damage while slowing enemies. Each turret's Tier 6 ability fundamentally changes its role: the Sniper's bullets pierce through enemies, the Slower applies a heavier slow and damage amplification, and the Gunner fires a 3-bullet burst at very high speed.
+
+I also designed the Hack Attack system, where special Hacker enemies can subvert a turret mid-fight, forcing the player to tap-reboot it before it can be used again, plus the Ghost Protocol system, where enemies drop soul orbs on death that must be tapped before the enemy respawns, adding a layer of active risk/reward to every kill. Enemy variety includes Jonin-class bosses with unique attack patterns.
+
+**Mobile Optimization**
+Optimized performance for Android devices through object pooling, efficient update management, reduced garbage collection spikes, and lightweight visual effects to keep the cyberpunk-neon aesthetic running smoothly on lower-end hardware.
+
+**Data-Driven Balancing**
+Implemented configurable tower and enemy statistics using Scriptable Objects, making balancing and iteration significantly faster across all three turret types and their six upgrade tiers each.
+
+**Design Challenges**
+The biggest challenge was avoiding repetitive gameplay. I addressed this through distinct turret archetypes, tier-based upgrade specializations, enemy types that counter specific strategies (like Hackers punishing turret-stacking), and the Ghost Protocol mechanic which keeps players actively engaged rather than passively watching waves play out.
+
+**What I Learned**
+This project taught me how to manage a larger solo development cycle from design through implementation, balance interconnected gameplay systems, and optimize for mobile devices. It also improved my ability to gather player feedback, identify design issues, and iterate based on real testing.
+
+**Technologies Used**
+Unity, C#, Scriptable Objects, Android Build Pipeline, Blender, Git.
+
+**Current Status**
+🟢 Active Development. Version 1 is being released on Itch.io to gather player feedback. Future updates will introduce new towers, additional enemy types, expanded progression systems, improved UI/UX, and a Play Store release with ad-supported monetization."
+                    data-modal-tags="Unity,C#,Mobile,Tower Defense,Scriptable Objects,Android,Blender,Solo Project"
+                >
+                    <div class="project-thumb">
+                        <div class="project-thumb-bg" style="background: linear-gradient(135deg, #0a0f1a 0%, #1a0a2e 100%)">👻</div>
+                        <span class="project-badge badge-game">Personal</span>
+                    </div>
+                    <div class="project-body">
+                        <div class="project-title">NEON://GHOST_PROTOCOL/</div>
+                        <p class="project-desc">A cyberpunk mobile tower defense game with three turret types, deep upgrade trees, and the signature Hack Attack & Ghost Protocol mechanics.</p>
+                        <div class="project-tags"><span class="tag">Unity</span><span class="tag">C#</span><span class="tag">Mobile</span><span class="tag">Tower Defense</span></div>
+                    </div>
+                </div>
+
+                <div
+                    class="project-card"
+                    data-category="jam"
+                    data-modal-title="Wear"
+                    data-modal-badge="2nd Place"
+                    data-modal-badge-class="badge-game"
+                    data-modal-emoji="🎭"
+                    data-modal-bg="linear-gradient(135deg,#1a0a1f,#3d0a3f)"
+                    data-modal-meta="Global Game Jam 2026 • Theme: Mask • 2nd Place"
+                    data-modal-desc="A game built in 48 hours around the Global Game Jam 2026 theme 'Mask', earning 2nd place at the Tunisia site."
+                    data-modal-detail="**Overview**
+Wear was created during the Global Game Jam 2026, built around the theme 'Mask'. The team interpreted the theme through a gameplay mechanic centered on changing identity, perception, or ability by wearing different masks. The project placed 2nd at the Tunisia GGJ site.
+
+**My Role**
+Game design, Unity programming, and gameplay implementation as part of a small jam team.
+
+**Challenges**
+Designing and implementing a mask-swapping mechanic that felt meaningful within a 48-hour timeframe, while keeping the scope tight enough to actually finish and polish the build before submission.
+
+**Result**
+🏆 2nd Place, Global Game Jam 2026, Tunisia."
+                    data-modal-tags="Unity,C#,Game Jam,GGJ 2026,Team Project"
+                >
+                    <div class="project-thumb">
+                        <div class="project-thumb-bg" style="background: linear-gradient(135deg, #1a0a1f 0%, #3d0a3f 100%)">🎭</div>
+                        <span class="project-badge badge-game">2nd Place</span>
+                    </div>
+                    <div class="project-body">
+                        <div class="project-title">Wear</div>
+                        <p class="project-desc">Global Game Jam 2026 entry built around the theme "Mask". 2nd place winner at the Tunisia site.</p>
+                        <div class="project-tags"><span class="tag">Unity</span><span class="tag">C#</span><span class="tag">Game Jam</span><span class="tag">GGJ 2026</span></div>
+                    </div>
+                </div>
+
+                <div
+                    class="project-card"
+                    data-category="jam"
+                    data-modal-title="Bubble Trouble"
+                    data-modal-badge="3rd Place"
+                    data-modal-badge-class="badge-game"
+                    data-modal-emoji="🫧"
+                    data-modal-bg="linear-gradient(135deg,#0a1a1f,#0a2a3f)"
+                    data-modal-meta="Global Game Jam 2025 • Theme: Bubbles • 3rd Place"
+                    data-modal-desc="A game built in 48 hours around the Global Game Jam 2025 theme 'Bubbles', earning 3rd place at the Tunisia site."
+                    data-modal-detail="**Overview**
+Bubble Trouble was created during the Global Game Jam 2025, built around the theme 'Bubbles'. The project placed 3rd at the Tunisia GGJ site.
+
+**My Role**
+Game design, Unity programming, and UI implementation.
+
+**Challenges**
+Built entirely under a 48-hour deadline. Designed and implemented the core bubble interaction mechanics from scratch, including how bubbles spawn, interact with the player, and affect the level.
+
+**Result**
+🏆 3rd Place, Global Game Jam 2025, Tunisia."
+                    data-modal-tags="Unity,C#,Game Jam,GGJ 2025,UI"
+                >
+                    <div class="project-thumb">
+                        <div class="project-thumb-bg" style="background: linear-gradient(135deg, #0a1a1f 0%, #0a2a3f 100%)">🫧</div>
+                        <span class="project-badge badge-game">3rd Place</span>
+                    </div>
+                    <div class="project-body">
+                        <div class="project-title">Bubble Trouble</div>
+                        <p class="project-desc">Global Game Jam 2025 entry built around the theme "Bubbles". 3rd place winner at the Tunisia site.</p>
+                        <div class="project-tags"><span class="tag">Unity</span><span class="tag">C#</span><span class="tag">Game Jam</span><span class="tag">GGJ 2025</span></div>
+                    </div>
+                </div>
+
+                <div
+                    class="project-card"
+                    data-category="personal"
+                    data-modal-title="Escape The Rooms"
+                    data-modal-badge="Personal"
+                    data-modal-badge-class="badge-game"
+                    data-modal-emoji="🚪"
+                    data-modal-bg="linear-gradient(135deg,#0a0a0a,#2a2418)"
+                    data-modal-meta="Procedural Horror • Personal Project • Unity"
+                    data-modal-desc="A procedurally generated 'backrooms'-style game where every playthrough creates a new maze of unsettling, liminal rooms to navigate and escape."
+                    data-modal-detail="**Overview**
+Escape The Rooms is a personal project exploring procedural generation in a liminal-space horror setting, inspired by the 'backrooms' concept. Rooms, corridors, and connections are generated at runtime so that no two playthroughs are identical.
+
+**My Role**
+Solo developer, responsible for the procedural generation system, level design rules, atmosphere, and player movement/interaction.
+
+**Technical Highlights**
+A room-and-connector generation system that assembles a coherent layout from modular pieces while avoiding dead-ends or unreachable areas, paired with lighting and audio design aimed at building unease through emptiness and repetition rather than jump scares.
+
+**What I Learned**
+Deepened my understanding of procedural content generation, modular level design, and how atmosphere and pacing can be built almost entirely through environment design and audio rather than scripted events."
+                    data-modal-tags="Unity,C#,Procedural Generation,Horror,Solo Project"
+                >
+                    <div class="project-thumb">
+                        <div class="project-thumb-bg" style="background: linear-gradient(135deg, #0a0a0a 0%, #2a2418 100%)">🚪</div>
+                        <span class="project-badge badge-game">Personal</span>
+                    </div>
+                    <div class="project-body">
+                        <div class="project-title">Escape The Rooms</div>
+                        <p class="project-desc">A procedurally generated backrooms-style game where every run creates a new maze of liminal rooms to navigate and escape.</p>
+                        <div class="project-tags"><span class="tag">Unity</span><span class="tag">C#</span><span class="tag">Procedural</span><span class="tag">Horror</span></div>
+                    </div>
+                </div>
+
+                <div
+                    class="project-card"
+                    data-category="personal"
+                    data-modal-title="Shadow Caster"
+                    data-modal-badge="Personal"
+                    data-modal-badge-class="badge-game"
+                    data-modal-emoji="🦖"
+                    data-modal-bg="linear-gradient(135deg,#1a1208,#3d2a0a)"
+                    data-modal-meta="Endless Runner • Personal Project • Unity"
+                    data-modal-desc="A dino-runner style endless game built around an original twist on the classic formula."
+                    data-modal-detail="**Overview**
+Shadow Caster takes the familiar dino-runner formula and reworks it around an original core twist, changing how the player reacts to obstacles and pacing compared to the genre standard.
+
+**My Role**
+Game design and Unity programming as part of the project's development.
+
+**What I Learned**
+Working within a well-known genre format taught me how small mechanical changes can significantly shift the feel and difficulty curve of an endless runner, and how important tight, responsive controls are when the core loop is this fast."
+                    data-modal-tags="Unity,C#,Endless Runner,Game Design"
+                >
+                    <div class="project-thumb">
+                        <div class="project-thumb-bg" style="background: linear-gradient(135deg, #1a1208 0%, #3d2a0a 100%)">🦖</div>
+                        <span class="project-badge badge-game">Personal</span>
+                    </div>
+                    <div class="project-body">
+                        <div class="project-title">Shadow Caster</div>
+                        <p class="project-desc">A dino-runner style endless game with an original twist on the classic formula.</p>
+                        <div class="project-tags"><span class="tag">Unity</span><span class="tag">C#</span><span class="tag">Endless Runner</span></div>
+                    </div>
+                </div>
+
+                <div
+                    class="project-card"
+                    data-category="academic"
+                    data-modal-title="Renomals"
+                    data-modal-badge="Academic"
+                    data-modal-badge-class="badge-game"
+                    data-modal-emoji="🏠"
+                    data-modal-bg="linear-gradient(135deg,#0a1a14,#0a3d2a)"
+                    data-modal-meta="VR • Academic Project • Accessibility-Focused"
+                    data-modal-desc="A VR game where the player renovates a house and unlocks new furniture as they build trust with animal clients, designed to help autistic players practice social interaction in a low-pressure setting."
+                    data-modal-detail="**Overview**
+Renomals is a VR experience built for an academic project, where the player renovates a house for animal clients. As the player interacts and becomes more 'friendly' with each client, new furniture and renovation options unlock. The project was designed specifically with autistic players in mind, offering a safe, low-pressure space to practice social interaction and express creativity through home design.
+
+**Goal & Audience**
+The core goal was accessibility and emotional safety, using friendly animal characters instead of humans to lower social pressure, while the renovation/unlock loop gives a clear, rewarding sense of progress tied to social interaction.
+
+**What I Learned**
+This project gave me hands-on experience designing for accessibility and emotional wellbeing rather than pure entertainment, working in VR, and building progression systems tied to relationship/trust mechanics rather than traditional combat or scoring."
+                    data-modal-tags="Unity,VR,Accessibility,Academic,Game Design"
+                >
+                    <div class="project-thumb">
+                        <div class="project-thumb-bg" style="background: linear-gradient(135deg, #0a1a14 0%, #0a3d2a 100%)">🏠</div>
+                        <span class="project-badge badge-game">Academic</span>
+                    </div>
+                    <div class="project-body">
+                        <div class="project-title">Renomals</div>
+                        <p class="project-desc">A VR house-renovation game where befriending animal clients unlocks new furniture, designed to help autistic players practice social interaction.</p>
+                        <div class="project-tags"><span class="tag">Unity</span><span class="tag">VR</span><span class="tag">Accessibility</span><span class="tag">Academic</span></div>
+                    </div>
+                </div>
+
+                <div
+                    class="project-card"
+                    data-category="academic"
+                    data-modal-title="Mindfield"
+                    data-modal-badge="Academic"
+                    data-modal-badge-class="badge-game"
+                    data-modal-emoji="🧠"
+                    data-modal-bg="linear-gradient(135deg,#10101f,#1a0a3f)"
+                    data-modal-meta="SDG 3 (Mental Health) • Academic Project • Narrative"
+                    data-modal-desc="A narrative exploration game where the player wanders through a visual representation of their own mind, collecting memory fragments and avoiding threats while the space itself guides the story, built for SDG 3 (Mental Health)."
+                    data-modal-detail="**Overview**
+Mindfield is an academic project built around UN Sustainable Development Goal 3 (Good Health and Well-Being), focusing on mental health. The player explores a surreal representation of their own mental space, advancing through environments while collecting fragments of memories that piece together a larger story.
+
+**Core Gameplay**
+The player must move carefully and stay stealthy around enemies that represent intrusive thoughts or anxieties, while the environment itself (its layout, lighting, and obstacles) gradually leads the player toward understanding what happened to the character, without relying on explicit exposition.
+
+**Design Intent**
+The goal was to communicate the experience of navigating mental health struggles through environmental storytelling and gameplay tension rather than dialogue-heavy narration, letting players piece the story together themselves.
+
+**What I Learned**
+This project pushed my skills in environmental storytelling, pacing a discovery-based narrative, and designing stealth-avoidance mechanics that serve an emotional theme rather than pure challenge."
+                    data-modal-tags="Unity,C#,Narrative,Stealth,SDG3,Academic"
+                >
+                    <div class="project-thumb">
+                        <div class="project-thumb-bg" style="background: linear-gradient(135deg, #10101f 0%, #1a0a3f 100%)">🧠</div>
+                        <span class="project-badge badge-game">Academic</span>
+                    </div>
+                    <div class="project-body">
+                        <div class="project-title">Mindfield</div>
+                        <p class="project-desc">An SDG 3 narrative game: explore your own mental space, collect memory fragments, and avoid threats as the story unravels around you.</p>
+                        <div class="project-tags"><span class="tag">Unity</span><span class="tag">C#</span><span class="tag">Narrative</span><span class="tag">Stealth</span></div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- OTHER PROJECTS, lives inside Projects section -->
+            <div class="early-divider">
+                <div class="early-toggle-wrap">
+                    <button id="earlyToggleBtn">Show Other Projects <i class="arrow">▼</i></button>
+                </div>
+
+                <div id="earlyList">
+                    <div class="early-item">
+                        <div class="early-header">
+                            <div class="early-header-left">
+                                <div class="early-game-title">Remains of a Legend</div>
+                                <div class="early-game-teaser"><span>What I learned:</span> Narrative design & low-poly storytelling, SICCA Game Jam 2025</div>
+                            </div>
+                            <div class="early-chevron"></div>
+                        </div>
+                        <div class="early-body">
+                            <div class="early-body-inner">
+                                <div class="early-body-content">
+                                    <div class="early-img-placeholder" style="background: linear-gradient(135deg, #1a140a 0%, #3d2a0a 100%)">📜</div>
+                                    <div>
+                                        <div class="early-detail-title">Remains of a Legend</div>
+                                        <div class="early-detail-learned">What I learned: Narrative Design & Low-Poly Worldbuilding</div>
+                                        <p class="early-detail-desc">A story-driven prototype made for the SICCA Game Jam 2025, built with a low-poly visual style and a focus on deep lore and narrative. The project was an exercise in delivering atmosphere and story within a short development window, leaning on environment and world details to hint at a much larger history.</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="early-item">
+                        <div class="early-header">
+                            <div class="early-header-left">
+                                <div class="early-game-title">2D Roguelike Dungeon Generator</div>
+                                <div class="early-game-teaser"><span>What I learned:</span> Procedural map generation algorithms</div>
+                            </div>
+                            <div class="early-chevron"></div>
+                        </div>
+                        <div class="early-body">
+                            <div class="early-body-inner">
+                                <div class="early-body-content">
+                                    <div class="early-img-placeholder" style="background: linear-gradient(135deg, #0a1a0f 0%, #0a3d1f 100%)">🗺️</div>
+                                    <div>
+                                        <div class="early-detail-title">2D Roguelike Dungeon Map Generator</div>
+                                        <div class="early-detail-learned">What I learned: Procedural Generation Algorithms</div>
+                                        <p class="early-detail-desc">A 2D roguelike dungeon generator that procedurally builds connected rooms and corridors into a coherent map each run. This project was focused purely on the generation algorithm itself: room placement, corridor connections, and ensuring every generated layout is fully traversable.</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="early-item">
+                        <div class="early-header">
+                            <div class="early-header-left">
+                                <div class="early-game-title">2D Assetless Platformer</div>
+                                <div class="early-game-teaser"><span>What I learned:</span> Dash mechanics & time-rewind systems</div>
+                            </div>
+                            <div class="early-chevron"></div>
+                        </div>
+                        <div class="early-body">
+                            <div class="early-body-inner">
+                                <div class="early-body-content">
+                                    <div class="early-img-placeholder" style="background: linear-gradient(135deg, #0a0a1a 0%, #1a1a3d 100%)">⬛</div>
+                                    <div>
+                                        <div class="early-detail-title">2D Assetless Platformer</div>
+                                        <div class="early-detail-learned">What I learned: Dash Mechanics & Time-Rewind Systems</div>
+                                        <p class="early-detail-desc">A prototype built with no art assets, focused entirely on mechanics: the player dashes through specific walls to progress, and can rewind time to undo movement and re-attempt sections of the level. The challenge was making both systems work together cleanly, especially handling state when rewinding through a wall-dash.</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="early-item">
+                        <div class="early-header">
+                            <div class="early-header-left">
+                                <div class="early-game-title">Space Invaders</div>
+                                <div class="early-game-teaser"><span>What I learned:</span> Classic arcade mechanics & object pooling</div>
+                            </div>
+                            <div class="early-chevron"></div>
+                        </div>
+                        <div class="early-body">
+                            <div class="early-body-inner">
+                                <div class="early-body-content">
+                                    <div class="early-img-placeholder" style="background: linear-gradient(135deg, #0a0f1a 0%, #0a1f3d 100%)">👽</div>
+                                    <div>
+                                        <div class="early-detail-title">Space Invaders</div>
+                                        <div class="early-detail-learned">What I learned: Classic Arcade Mechanics & Object Pooling</div>
+                                        <p class="early-detail-desc">A recreation of the classic Space Invaders formula: enemy grid movement patterns, increasing difficulty, and projectile-heavy gameplay. Used as a foundation for practicing clean object pooling and input handling.</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="early-item">
+                        <div class="early-header">
+                            <div class="early-header-left">
+                                <div class="early-game-title">Mobile Quiz Game</div>
+                                <div class="early-game-teaser"><span>What I learned:</span> Data-driven UI & mobile prototyping</div>
+                            </div>
+                            <div class="early-chevron"></div>
+                        </div>
+                        <div class="early-body">
+                            <div class="early-body-inner">
+                                <div class="early-body-content">
+                                    <div class="early-img-placeholder" style="background: linear-gradient(135deg, #1a0f0a 0%, #3d1f0a 100%)">❓</div>
+                                    <div>
+                                        <div class="early-detail-title">Mobile Quiz Game (Prototype)</div>
+                                        <div class="early-detail-learned">What I learned: Data-Driven UI & Mobile Prototyping</div>
+                                        <p class="early-detail-desc">A mobile quiz game prototype focused on a clean, data-driven question/answer system and mobile-friendly UI flow, laying groundwork for UI patterns later reused in NEON://GHOST_PROTOCOL/.</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- MODAL POPUP -->
+        <div class="modal-overlay" id="modalOverlay">
+            <div class="modal-box" id="modalBox">
+                <div class="modal-hero" id="modalHero">
+                    <button class="modal-close" id="modalClose" aria-label="Close">✕</button>
+                </div>
+                <div class="modal-body">
+                    <div class="modal-badge" id="modalBadge"></div>
+                    <div class="modal-title" id="modalTitle"></div>
+                    <div class="modal-meta" id="modalMeta"></div>
+                    <p class="modal-desc" id="modalDesc"></p>
+                    <div class="modal-detail-block">
+                        <div class="modal-detail-label">About this project</div>
+                        <div class="modal-detail-text" id="modalDetail"></div>
+                    </div>
+                    <div class="modal-tags" id="modalTags"></div>
+                </div>
+            </div>
+        </div>
+
+        <!-- ACHIEVEMENTS -->
+        <section id="achievements">
+            <div class="section-label">Recognition</div>
+            <h2 class="section-title">Achievements</h2>
+            <div class="section-line"></div>
+
+            <div class="achievements-grid">
+                <div class="achievement-card">
+                    <div class="achievement-icon">🏆</div>
+                    <div>
+                        <div class="achievement-title">Global Game Jam 2026, 2nd Place</div>
+                        <div class="achievement-sub">Tunisia Site</div>
+                    </div>
+                </div>
+                <div class="achievement-card">
+                    <div class="achievement-icon">🏆</div>
+                    <div>
+                        <div class="achievement-title">Global Game Jam 2025, 3rd Place</div>
+                        <div class="achievement-sub">Tunisia Site</div>
+                    </div>
+                </div>
+                <div class="achievement-card">
+                    <div class="achievement-icon">🎓</div>
+                    <div>
+                        <div class="achievement-title">ISAMM Game Development Student</div>
+                        <div class="achievement-sub">Currently studying</div>
+                    </div>
+                </div>
+                <div class="achievement-card">
+                    <div class="achievement-icon">🎮</div>
+                    <div>
+                        <div class="achievement-title">5+ Game Jams Completed</div>
+                        <div class="achievement-sub">Solo & team projects</div>
+                    </div>
+                </div>
+                <div class="achievement-card">
+                    <div class="achievement-icon">🛠️</div>
+                    <div>
+                        <div class="achievement-title">10+ Projects Developed</div>
+                        <div class="achievement-sub">Games, tools & prototypes</div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- SKILLS -->
+        <section id="skills">
+            <div class="section-label">What I Do</div>
+            <h2 class="section-title">Skills</h2>
+            <div class="section-line"></div>
+
+            <div class="skills-grid">
+                <div class="skill-group">
+                    <div class="skill-group-icon">🎮</div>
+                    <div class="skill-group-title">Game Dev</div>
+                    <ul class="skill-list">
+                        <li>Unity Engine</li>
+                        <li>C# Programming</li>
+                        <li>Gameplay Systems</li>
+                        <li>Enemy AI & Behaviors</li>
+                        <li>UI Implementation</li>
+                        <li>Mobile Optimization</li>
+                    </ul>
+                </div>
+                <div class="skill-group">
+                    <div class="skill-group-icon">🧩</div>
+                    <div class="skill-group-title">Game Design</div>
+                    <ul class="skill-list">
+                        <li>Mechanics & Systems Design</li>
+                        <li>Level Design</li>
+                        <li>Procedural Generation</li>
+                        <li>Narrative & Environmental Storytelling</li>
+                        <li>Data-Driven Balancing</li>
+                    </ul>
+                </div>
+                <div class="skill-group">
+                    <div class="skill-group-icon">🛠️</div>
+                    <div class="skill-group-title">Tools</div>
+                    <ul class="skill-list">
+                        <li>Unity Editor & Scriptable Objects</li>
+                        <li>Blender (3D Modeling)</li>
+                        <li>Git & Version Control</li>
+                        <li>Android Build Pipeline</li>
+                        <li>VS Code</li>
+                    </ul>
+                </div>
+            </div>
+        </section>
+
+        <!-- ABOUT -->
+        <section id="about">
+            <div class="section-label">Who I Am</div>
+            <h2 class="section-title">About Me</h2>
+            <div class="section-line"></div>
+
+            <div class="about-layout">
+                <div class="about-text">
+                    <p>I'm <strong>Mohamed Radhi Reychico</strong>, a Unity game developer from <strong>Tunisia</strong> with 5+ years of experience building games, prototypes and game jam projects.</p>
+                    <p>I focus on gameplay systems, game design, and rapid prototyping.</p>
+                    <p>My current project is <strong>"Neon://Ghost_Protocol"</strong>, a mobile tower defense game focused on unique strategic mechanics.</p>
+                    <p>I'm currently studying game development at <strong>ISAMM</strong> and looking to grow into a professional gameplay programmer and game designer.</p>
+                </div>
+                <div class="about-stats">
+                    <div class="stat-card">
+                        <div class="stat-num">5+</div>
+                        <div class="stat-label">Years with Unity</div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-num">5</div>
+                        <div class="stat-label">Game Jams Completed</div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-num">2</div>
+                        <div class="stat-label">Game Jam Awards</div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-num">10+</div>
+                        <div class="stat-label">Projects Developed</div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- CONTACT -->
+        <section id="contact">
+            <div class="section-label">Let's Talk</div>
+            <h2 class="section-title">Contact</h2>
+            <div class="section-line"></div>
+
+            <div class="contact-layout">
+                <div>
+                    <p class="contact-intro">Whether you're looking for a game developer on your team, want to collaborate on a project, or just want to talk game design, my inbox is open.</p>
+                    <div class="contact-links">
+                        <a href="mailto:radhireych6@gmail.com" class="contact-link">
+                            <div class="contact-icon">📧</div>
+                            <div>
+                                <div style="font-size: 0.75rem; color: var(--muted); margin-bottom: 2px">Email</div>
+                                radhireych6@gmail.com
+                            </div>
+                        </a>
+                        <a href="https://github.com/RadhroudhH" class="contact-link" target="_blank" rel="noopener">
+                            <div class="contact-icon">⚙️</div>
+                            <div>
+                                <div style="font-size: 0.75rem; color: var(--muted); margin-bottom: 2px">GitHub</div>
+                                github.com/RadhroudhH
+                            </div>
+                        </a>
+                        <a href="https://www.linkedin.com/in/mohamed-radhi-reychico-3698203a0/?locale=fr" class="contact-link" target="_blank" rel="noopener">
+                            <div class="contact-icon">💼</div>
+                            <div>
+                                <div style="font-size: 0.75rem; color: var(--muted); margin-bottom: 2px">LinkedIn</div>
+                                linkedin.com/in/mohamed-radhi-reychico
+                            </div>
+                        </a>
+                        <a href="https://twitter.com/reychico" class="contact-link" target="_blank" rel="noopener">
+                            <div class="contact-icon">🐦</div>
+                            <div>
+                                <div style="font-size: 0.75rem; color: var(--muted); margin-bottom: 2px">Twitter / X</div>
+                                @radhroudhH
+                            </div>
+                        </a>
+                    </div>
+                </div>
+
+                <div class="contact-form">
+                    <div class="form-group">
+                        <label for="name">Your Name</label>
+                        <input id="name" type="text" placeholder="John Doe" />
+                    </div>
+                    <div class="form-group">
+                        <label for="email">Email</label>
+                        <input id="email" type="email" placeholder="you@example.com" />
+                    </div>
+                    <div class="form-group">
+                        <label for="message">Message</label>
+                        <textarea id="message" rows="5" placeholder="Tell me about your project..."></textarea>
+                    </div>
+                    <button class="btn-primary" style="width: 100%; padding: 0.9rem; font-size: 0.85rem" onclick="handleSend()">Send Message</button>
+                    <p id="form-feedback" style="font-size: 0.8rem; color: var(--accent); display: none; text-align: center">✓ Message sent! I'll get back to you soon.</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- FOOTER -->
+        <footer>
+            <div class="footer-copy">© 2026 Mohamed Radhi Reychico. All rights reserved.</div>
+            <div class="footer-social">
+                <a href="https://github.com/RadhroudhH" target="_blank" rel="noopener">GitHub</a>
+                <a href="https://www.linkedin.com/in/mohamed-radhi-reychico-3698203a0/?locale=fr" target="_blank" rel="noopener">LinkedIn</a>
+                <a href="https://radhroudh.itch.io/" target="_blank" rel="noopener">Itch.io</a>
+            </div>
+            <div class="footer-logo">MRR</div>
+        </footer>
+
+        <script>
+            // ── Project filter ──────────────────────────────────────────────
+            const filterBtns = document.querySelectorAll(".filter-btn");
+            const cards = document.querySelectorAll(".project-card");
+
+            filterBtns.forEach((btn) => {
+                btn.addEventListener("click", () => {
+                    filterBtns.forEach((b) => b.classList.remove("active"));
+                    btn.classList.add("active");
+                    const filter = btn.dataset.filter;
+                    cards.forEach((card) => {
+                        card.style.display = filter === "all" || card.dataset.category === filter ? "" : "none";
+                    });
+                });
+            });
+
+            // ── Project Modal ───────────────────────────────────────────────
+            const overlay = document.getElementById("modalOverlay");
+            const modalBox = document.getElementById("modalBox");
+            const modalClose = document.getElementById("modalClose");
+
+            function openModal(card) {
+                const d = card.dataset;
+                document.getElementById("modalHero").style.background = d.modalBg;
+                // emoji inside hero (remove old ones first)
+                const oldEmoji = document.getElementById("modalEmoji");
+                if (oldEmoji) oldEmoji.remove();
+                const emojiEl = document.createElement("span");
+                emojiEl.id = "modalEmoji";
+                emojiEl.style.cssText = "font-size:5rem;pointer-events:none;";
+                emojiEl.textContent = d.modalEmoji;
+                document.getElementById("modalHero").appendChild(emojiEl);
+
+                const badge = document.getElementById("modalBadge");
+                badge.textContent = d.modalBadge;
+                badge.className = "modal-badge " + d.modalBadgeClass;
+
+                document.getElementById("modalTitle").textContent = d.modalTitle;
+                document.getElementById("modalMeta").textContent = d.modalMeta || "";
+                document.getElementById("modalDesc").textContent = d.modalDesc;
+
+                // Render detail text: split on blank lines into paragraphs, **bold** -> <strong>
+                const detailEl = document.getElementById("modalDetail");
+                const escapeHtml = (s) => s.replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;");
+                detailEl.innerHTML = d.modalDetail
+                    .trim()
+                    .split(/\n\s*\n/)
+                    .map((p) => {
+                        let html = escapeHtml(p.trim());
+                        html = html.replace(/\*\*(.+?)\*\*/g, '<strong style="color:var(--text);">$1</strong>');
+                        html = html.replace(/\n/g, "<br>");
+                        return `<p style="margin-bottom:1.1rem;">${html}</p>`;
+                    })
+                    .join("");
+
+                const tagsEl = document.getElementById("modalTags");
+                tagsEl.innerHTML = "";
+                d.modalTags.split(",").forEach((t) => {
+                    const s = document.createElement("span");
+                    s.className = "modal-tag";
+                    s.textContent = t.trim();
+                    tagsEl.appendChild(s);
+                });
+
+                overlay.classList.add("active");
+                document.body.style.overflow = "hidden";
+                modalBox.scrollTop = 0;
+            }
+
+            function closeModal() {
+                overlay.classList.remove("active");
+                document.body.style.overflow = "";
+            }
+
+            cards.forEach((card) => {
+                card.addEventListener("click", () => openModal(card));
+            });
+
+            modalClose.addEventListener("click", (e) => {
+                e.stopPropagation();
+                closeModal();
+            });
+
+            overlay.addEventListener("click", (e) => {
+                if (!modalBox.contains(e.target)) closeModal();
+            });
+
+            document.addEventListener("keydown", (e) => {
+                if (e.key === "Escape") closeModal();
+            });
+
+            // ── Contact form ─────────────────────────────────────────────────
+            function handleSend() {
+                const name = document.getElementById("name").value.trim();
+                const email = document.getElementById("email").value.trim();
+                const message = document.getElementById("message").value.trim();
+                if (!name || !email || !message) return;
+                document.getElementById("form-feedback").style.display = "block";
+                document.getElementById("name").value = "";
+                document.getElementById("email").value = "";
+                document.getElementById("message").value = "";
+            }
+
+            // ── Early Projects accordion ─────────────────────────────────────
+            const earlyToggleBtn = document.getElementById("earlyToggleBtn");
+            const earlyList = document.getElementById("earlyList");
+            const earlyItems = document.querySelectorAll(".early-item");
+            const projectsSection = document.getElementById("projects");
+
+            function closeAllRows() {
+                earlyItems.forEach((item) => item.classList.remove("open"));
+            }
+
+            earlyToggleBtn.addEventListener("click", () => {
+                const isOpen = earlyList.classList.toggle("open");
+                earlyToggleBtn.classList.toggle("open", isOpen);
+                earlyToggleBtn.childNodes[0].textContent = isOpen ? "Hide Other Projects " : "Show Other Projects ";
+                if (!isOpen) closeAllRows();
+            });
+
+            earlyItems.forEach((item) => {
+                const header = item.querySelector(".early-header");
+                header.addEventListener("click", () => {
+                    const isAlreadyOpen = item.classList.contains("open");
+                    closeAllRows();
+                    if (!isAlreadyOpen) item.classList.add("open");
+                });
+            });
+
+            // Close rows when scrolling away from the projects section
+            const earlyObserver = new IntersectionObserver(
+                (entries) => {
+                    entries.forEach((entry) => {
+                        if (!entry.isIntersecting) closeAllRows();
+                    });
+                },
+                { threshold: 0.03 },
+            );
+
+            earlyObserver.observe(projectsSection);
+
+            // ── Inject project meta lines from data-modal-meta ───────────────
+            cards.forEach((card) => {
+                const meta = card.dataset.modalMeta;
+                if (!meta) return;
+                const body = card.querySelector(".project-body");
+                const title = card.querySelector(".project-title");
+                if (body && title) {
+                    const metaEl = document.createElement("div");
+                    metaEl.className = "project-meta";
+                    metaEl.textContent = meta;
+                    body.insertBefore(metaEl, title);
+                }
+            });
+
+            // ── Scroll reveal ────────────────────────────────────────────────
+            const revealTargets = document.querySelectorAll(".project-card, .skill-group, .achievement-card, .stat-card, .contact-link, .section-label, .section-title");
+            revealTargets.forEach((el, i) => {
+                el.classList.add("reveal");
+                el.classList.add("d" + ((i % 4) + 1));
+            });
+
+            const revealObserver = new IntersectionObserver(
+                (entries) => {
+                    entries.forEach((entry) => {
+                        if (entry.isIntersecting) {
+                            entry.target.classList.add("visible");
+                            revealObserver.unobserve(entry.target);
+                        }
+                    });
+                },
+                { threshold: 0.12, rootMargin: "0px 0px -40px 0px" },
+            );
+
+            revealTargets.forEach((el) => revealObserver.observe(el));
+
+            // ── Nav scrollspy ────────────────────────────────────────────────
+            const navLinks = document.querySelectorAll(".nav-links a");
+            const sections = ["projects", "achievements", "skills", "about", "contact"].map((id) => document.getElementById(id)).filter(Boolean);
+
+            const spyObserver = new IntersectionObserver(
+                (entries) => {
+                    entries.forEach((entry) => {
+                        if (entry.isIntersecting) {
+                            navLinks.forEach((a) => {
+                                a.classList.toggle("active", a.getAttribute("href") === "#" + entry.target.id);
+                            });
+                        }
+                    });
+                },
+                { threshold: 0.4 },
+            );
+
+            sections.forEach((s) => spyObserver.observe(s));
+        </script>
+    </body>
+</html>
