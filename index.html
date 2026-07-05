@@ -64,6 +64,13 @@
                 font-size: 1.4rem;
                 letter-spacing: 2px;
                 color: var(--accent);
+                text-decoration: none;
+                cursor: pointer;
+                transition: opacity 0.2s;
+            }
+
+            .nav-logo:hover {
+                opacity: 0.75;
             }
 
             .nav-links {
@@ -984,7 +991,64 @@
                 border: 1px solid var(--border);
                 border-radius: 4px;
                 padding: 1.2rem 1.4rem;
+                margin-bottom: 0;
+            }
+
+            /* Two-column row: stacked side gifs (left) + detail text (right) */
+            .modal-content-row {
+                display: grid;
+                grid-template-columns: 240px 1fr;
+                gap: 1.4rem;
+                align-items: start;
                 margin-bottom: 1.5rem;
+            }
+            .modal-content-row.no-side {
+                grid-template-columns: 1fr;
+            }
+
+            .modal-side {
+                display: flex;
+                flex-direction: column;
+                gap: 0.9rem;
+                position: sticky;
+                top: 0;
+            }
+            .modal-side img {
+                width: 100%;
+                border-radius: 6px;
+                border: 1px solid var(--border);
+                display: block;
+                background: var(--bg);
+            }
+
+            /* Bottom gallery: the rest of the screenshots / gifs */
+            .modal-gallery {
+                margin-bottom: 1.5rem;
+            }
+            .modal-gallery:empty {
+                display: none;
+            }
+            .modal-gallery-grid {
+                display: grid;
+                grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+                gap: 0.8rem;
+            }
+            .modal-gallery-grid img {
+                width: 100%;
+                aspect-ratio: 16/9;
+                object-fit: cover;
+                border-radius: 6px;
+                border: 1px solid var(--border);
+                display: block;
+                background: var(--bg);
+                cursor: zoom-in;
+                transition:
+                    transform 0.25s ease,
+                    border-color 0.25s ease;
+            }
+            .modal-gallery-grid img:hover {
+                transform: scale(1.02);
+                border-color: rgba(0, 229, 160, 0.4);
             }
 
             .modal-detail-label {
@@ -1037,6 +1101,32 @@
                 color: var(--accent);
                 margin-bottom: 0.6rem;
                 font-weight: 600;
+            }
+
+            /* Lightbox for gallery images */
+            .lightbox {
+                position: fixed;
+                inset: 0;
+                z-index: 700;
+                background: rgba(4, 6, 10, 0.92);
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                padding: 2rem;
+                opacity: 0;
+                pointer-events: none;
+                transition: opacity 0.25s ease;
+                cursor: zoom-out;
+            }
+            .lightbox.active {
+                opacity: 1;
+                pointer-events: all;
+            }
+            .lightbox img {
+                max-width: 92vw;
+                max-height: 92vh;
+                border-radius: 6px;
+                border: 1px solid rgba(255, 255, 255, 0.12);
             }
 
             /* ── EARLY PROJECTS (inside Projects section) ─────────────── */
@@ -1295,13 +1385,24 @@
                 .early-game-teaser {
                     white-space: normal;
                 }
+                .modal-content-row {
+                    grid-template-columns: 1fr;
+                }
+                .modal-side {
+                    flex-direction: row;
+                    flex-wrap: wrap;
+                    position: static;
+                }
+                .modal-side img {
+                    flex: 1 1 45%;
+                }
             }
         </style>
     </head>
     <body>
         <!-- NAV -->
         <nav>
-            <div class="nav-logo">MRR</div>
+            <a href="#hero" class="nav-logo" id="navLogo">MRR</a>
             <ul class="nav-links">
                 <li><a href="#projects">Projects</a></li>
                 <li><a href="#achievements">Achievements</a></li>
@@ -1361,6 +1462,8 @@
                     data-modal-bg="linear-gradient(135deg,#0a0f1a,#1a0a2e)"
                     data-cover="Neon Ghost Protocol Small.png"
                     data-modal-banner="Neon Ghost Protocol.png"
+                    data-modal-side="neon-gif-1.gif,neon-gif-2.gif,neon-gif-3.gif"
+                    data-modal-gallery="neon-shot-1.png,neon-shot-2.png,neon-shot-3.png,neon-shot-4.png,neon-shot-5.png"
                     data-modal-embed='<iframe frameborder="0" src="https://itch.io/embed/4654476?bg_color=0A0A18&amp;fg_color=E8E8F0&amp;link_color=00E5FF&amp;border_color=AA33FF" width="552" height="167"><a href="https://radhroudh.itch.io/neonghost-protocol">NEON://GHOST_PROTOCOL by Radhroudh</a></iframe>'
                     data-modal-meta="Mobile Tower Defense • Solo Project • Unity • Android"
                     data-modal-desc="A cyberpunk-inspired mobile tower defense game built entirely in Unity. The project focuses on strategic decision-making, tower synergy, and replayability through unique enemy behaviors and upgrade paths."
@@ -1736,15 +1839,22 @@ This project pushed my skills in environmental storytelling, pacing a discovery-
                     <div class="modal-title" id="modalTitle"></div>
                     <div class="modal-meta" id="modalMeta"></div>
                     <p class="modal-desc" id="modalDesc"></p>
-                    <div class="modal-detail-block">
-                        <div class="modal-detail-label">About this project</div>
-                        <div class="modal-detail-text" id="modalDetail"></div>
-                    </div>
                     <div class="modal-embed" id="modalEmbed"></div>
+                    <div class="modal-gallery" id="modalGallery"></div>
+                    <div class="modal-content-row" id="modalContentRow">
+                        <div class="modal-side" id="modalSide"></div>
+                        <div class="modal-detail-block">
+                            <div class="modal-detail-label">About this project</div>
+                            <div class="modal-detail-text" id="modalDetail"></div>
+                        </div>
+                    </div>
                     <div class="modal-tags" id="modalTags"></div>
                 </div>
             </div>
         </div>
+
+        <!-- LIGHTBOX (for gallery image zoom) -->
+        <div class="lightbox" id="lightbox"><img id="lightboxImg" src="" alt="" /></div>
 
         <!-- ACHIEVEMENTS -->
         <section id="achievements">
@@ -1843,18 +1953,18 @@ This project pushed my skills in environmental storytelling, pacing a discovery-
 
             <div class="about-layout">
                 <div class="about-text">
-                    <p>I'm <strong>Mohamed Radhi Reychico</strong>, a Unity game developer from <strong>Tunisia</strong> with 5+ years of experience building games, prototypes and game jam projects.</p>
+                    <p>I'm <strong>Mohamed Radhi Reychico</strong>, a Unity game developer from <strong>Tunisia</strong> with 6+ years of experience building games, prototypes and game jam projects.</p>
                     <p>I focus on gameplay systems, game design, and rapid prototyping.</p>
                     <p>My current project is <strong>"Neon://Ghost_Protocol"</strong>, a mobile tower defense game focused on unique strategic mechanics.</p>
                     <p>I'm currently studying game development at <strong>ISAMM</strong> and looking to grow into a professional gameplay programmer and game designer.</p>
                 </div>
                 <div class="about-stats">
                     <div class="stat-card">
-                        <div class="stat-num">5+</div>
+                        <div class="stat-num">6+</div>
                         <div class="stat-label">Years with Unity</div>
                     </div>
                     <div class="stat-card">
-                        <div class="stat-num">5</div>
+                        <div class="stat-num">6</div>
                         <div class="stat-label">Game Jams Completed</div>
                     </div>
                     <div class="stat-card">
@@ -2026,6 +2136,46 @@ This project pushed my skills in environmental storytelling, pacing a discovery-
                     embedEl.innerHTML = "";
                 }
 
+                // Render side gifs/screenshots (1-2 stacked, Itch-style). Collapse column if none load.
+                const sideEl = document.getElementById("modalSide");
+                const rowEl = document.getElementById("modalContentRow");
+                rowEl.classList.add("no-side"); // start single-column; expand only if a side image loads
+                buildImageSet(
+                    sideEl,
+                    d.modalSide,
+                    "side gif",
+                    () => {
+                        rowEl.classList.add("no-side");
+                    },
+                    () => {
+                        rowEl.classList.remove("no-side");
+                    },
+                );
+
+                // Render bottom gallery (the rest of the screenshots/gifs). Hide section if none load.
+                const galleryEl = document.getElementById("modalGallery");
+                galleryEl.innerHTML = "";
+                if (d.modalGallery) {
+                    const label = document.createElement("div");
+                    label.className = "modal-detail-label";
+                    label.style.marginBottom = "0.7rem";
+                    label.textContent = "Screenshots & Clips";
+                    const grid = document.createElement("div");
+                    grid.className = "modal-gallery-grid";
+                    galleryEl.appendChild(label);
+                    galleryEl.appendChild(grid);
+                    buildImageSet(
+                        grid,
+                        d.modalGallery,
+                        "screenshot",
+                        () => {
+                            galleryEl.innerHTML = ""; // nothing loaded -> hide whole section
+                        },
+                        null,
+                        true,
+                    );
+                }
+
                 const tagsEl = document.getElementById("modalTags");
                 tagsEl.innerHTML = "";
                 d.modalTags.split(",").forEach((t) => {
@@ -2039,6 +2189,51 @@ This project pushed my skills in environmental storytelling, pacing a discovery-
                 document.body.style.overflow = "hidden";
                 modalBox.scrollTop = 0;
             }
+
+            // Build a set of images into a container. Calls onAllFailed() if every image
+            // errors, onAnyLoaded() if at least one succeeds. If clickable, images open the lightbox.
+            function buildImageSet(container, list, altLabel, onAllFailed, onAnyLoaded, clickable) {
+                container.innerHTML = "";
+                const files = (list || "")
+                    .split(",")
+                    .map((s) => s.trim())
+                    .filter(Boolean);
+                if (!files.length) {
+                    if (onAllFailed) onAllFailed();
+                    return;
+                }
+                let failed = 0,
+                    loaded = 0;
+                files.forEach((src, i) => {
+                    const img = document.createElement("img");
+                    img.src = src;
+                    img.alt = altLabel + " " + (i + 1);
+                    img.loading = "lazy";
+                    img.onload = () => {
+                        loaded++;
+                        if (loaded === 1 && onAnyLoaded) onAnyLoaded();
+                    };
+                    img.onerror = () => {
+                        img.remove();
+                        failed++;
+                        if (failed === files.length && onAllFailed) onAllFailed();
+                    };
+                    if (clickable) img.addEventListener("click", () => openLightbox(src));
+                    container.appendChild(img);
+                });
+            }
+
+            // Lightbox
+            const lightbox = document.getElementById("lightbox");
+            const lightboxImg = document.getElementById("lightboxImg");
+            function openLightbox(src) {
+                lightboxImg.src = src;
+                lightbox.classList.add("active");
+            }
+            lightbox.addEventListener("click", () => {
+                lightbox.classList.remove("active");
+                lightboxImg.src = "";
+            });
 
             function closeModal() {
                 overlay.classList.remove("active");
@@ -2151,20 +2346,35 @@ This project pushed my skills in environmental storytelling, pacing a discovery-
             const navLinks = document.querySelectorAll(".nav-links a");
             const sections = ["projects", "achievements", "skills", "about", "contact"].map((id) => document.getElementById(id)).filter(Boolean);
 
+            function setActive(id) {
+                navLinks.forEach((a) => {
+                    a.classList.toggle("active", a.getAttribute("href") === "#" + id);
+                });
+            }
+
+            // Default: Projects bar active (e.g. when at the very top / home)
+            setActive("projects");
+
             const spyObserver = new IntersectionObserver(
                 (entries) => {
                     entries.forEach((entry) => {
-                        if (entry.isIntersecting) {
-                            navLinks.forEach((a) => {
-                                a.classList.toggle("active", a.getAttribute("href") === "#" + entry.target.id);
-                            });
-                        }
+                        if (entry.isIntersecting) setActive(entry.target.id);
                     });
                 },
                 { threshold: 0.4 },
             );
 
             sections.forEach((s) => spyObserver.observe(s));
+
+            // ── MRR logo → smooth scroll to the very top (home) ──────────────
+            const navLogo = document.getElementById("navLogo");
+            if (navLogo) {
+                navLogo.addEventListener("click", (e) => {
+                    e.preventDefault();
+                    window.scrollTo({ top: 0, behavior: "smooth" });
+                    setActive("projects");
+                });
+            }
         </script>
     </body>
 </html>
