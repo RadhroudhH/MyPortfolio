@@ -410,6 +410,48 @@
                 color: #6496ff;
             }
 
+            /* Status label, top-left of the thumbnail */
+            .project-status {
+                position: absolute;
+                top: 0.75rem;
+                left: 0.75rem;
+                z-index: 3;
+                display: inline-flex;
+                align-items: center;
+                gap: 0.4rem;
+                font-size: 0.6rem;
+                letter-spacing: 1px;
+                text-transform: uppercase;
+                font-weight: 700;
+                padding: 0.28rem 0.65rem;
+                border-radius: 20px;
+                backdrop-filter: blur(4px);
+                -webkit-backdrop-filter: blur(4px);
+            }
+            .project-status::before {
+                content: "";
+                width: 6px;
+                height: 6px;
+                border-radius: 50%;
+                background: currentColor;
+                box-shadow: 0 0 6px currentColor;
+            }
+            .status-dev {
+                background: rgba(255, 107, 53, 0.16);
+                color: #ff8c5a;
+                border: 1px solid rgba(255, 107, 53, 0.35);
+            }
+            .status-finished {
+                background: rgba(100, 150, 255, 0.16);
+                color: #7aa8ff;
+                border: 1px solid rgba(100, 150, 255, 0.35);
+            }
+            .status-published {
+                background: rgba(0, 229, 160, 0.16);
+                color: #00e5a0;
+                border: 1px solid rgba(0, 229, 160, 0.35);
+            }
+
             .project-body {
                 padding: 1.25rem;
             }
@@ -1498,6 +1540,7 @@ Unity, C#, Scriptable Objects, Android Build Pipeline, Blender, Git.
                     data-modal-tags="Unity,C#,Mobile,Tower Defense,Scriptable Objects,Android,Blender,Solo Project"
                 >
                     <div class="project-thumb">
+                        <div class="project-status status-published">Published</div>
                         <div class="project-thumb-bg" style="background: linear-gradient(135deg, #0a0f1a 0%, #1a0a2e 100%)">👻</div>
                         <img class="project-thumb-img" src="Neon Ghost Protocol Small.png" alt="NEON://GHOST_PROTOCOL cover" onerror="this.style.display = 'none'" />
                         <span class="project-badge badge-game">Personal</span>
@@ -1506,6 +1549,55 @@ Unity, C#, Scriptable Objects, Android Build Pipeline, Blender, Git.
                         <div class="project-title">NEON://GHOST_PROTOCOL/</div>
                         <p class="project-desc">A cyberpunk mobile tower defense game with three turret types, deep upgrade trees, and the signature Hack Attack & Ghost Protocol mechanics.</p>
                         <div class="project-tags"><span class="tag">Unity</span><span class="tag">C#</span><span class="tag">Mobile</span><span class="tag">Tower Defense</span></div>
+                    </div>
+                </div>
+
+                <div
+                    class="project-card"
+                    data-category="jam"
+                    data-modal-title="Count's Down"
+                    data-modal-badge="Game Jam"
+                    data-modal-badge-class="badge-game"
+                    data-modal-emoji="🧛"
+                    data-modal-bg="linear-gradient(135deg,#1b1f3b,#3d0a0a)"
+                    data-cover="Counts Down.png"
+                    data-modal-banner="Counts Down.png"
+                    data-modal-gallery="counts-down-1.png,counts-down-2.png,counts-down-3.png,counts-down-4.png"
+                    data-modal-embed='<iframe frameborder="0" src="https://itch.io/embed/4820855?bg_color=1B1F3B&amp;fg_color=E8A33D&amp;link_color=8B1A1A&amp;border_color=E8E2D0" width="552" height="167"><a href="https://radhroudh.itch.io/counts-down">Count&#39;s Down by Radhroudh</a></iframe>'
+                    data-modal-meta="Roguelike FPS • Solo Project • GMTK Game Jam 2026"
+                    data-modal-desc="A roguelike FPS where your gun counts down from nine, and so does everything you kill. Freeze enemies mid-count, draft a new chamber rule between waves, and survive."
+                    data-modal-detail="**Overview**
+Count's Down is a roguelike FPS built solo for GMTK Game Jam 2026 around the theme 'Countdown'. Your gun's chamber counts down from nine to one and auto-reloads at zero, and so does everything you kill. Survive the waves, and draft a new chamber rule between each one.
+
+**How to Play**
+WASD to move, mouse to aim, left click to fire (the chamber counts 9 to 1, auto-reloading at zero). Survive each wave, then draft a new chamber rule before the next. Use the seeds to freeze enemies mid-count, including the boss. (Tip: bunny hopping is possible.)
+
+**My Role**
+Solo developer. I built everything: programming, gameplay, audio, and level design, with original music composed for the jam.
+
+**Design & Highlights**
+This was my first boss-battle game, and I leaned into a bullet-hell feel inspired by Megabonk, especially its telegraphed indicator attacks and low-framerate animation style. Those low-FPS animations give the game a lot of its character, and the countdown gun is a genuinely original core mechanic.
+
+**Biggest Challenge**
+The hardest part was building the map and nailing the overall feel of the game, its atmosphere and pacing. I'm proud of how it came together.
+
+**Credits**
+Programming, gameplay, audio & level design: Me. Original music composed for the jam: Me. Asset packs: 'Low Poly Ultimate Pack' (Polyperfect), 'Low Poly Vampire' (coolalext), 'Trails VFX' (Vefects), 'VFX Fire Package' (Wallcoeur). Character animations: Mixamo. Tweening: DOTween.
+
+**Status**
+🟢 Published as a first demo on Itch.io."
+                    data-modal-tags="Unity,C#,Roguelike,FPS,GMTK Game Jam,Bullet Hell"
+                >
+                    <div class="project-thumb">
+                        <div class="project-status status-published">Published</div>
+                        <div class="project-thumb-bg" style="background: linear-gradient(135deg, #1b1f3b 0%, #3d0a0a 100%)">🧛</div>
+                        <img class="project-thumb-img" src="Counts Down.png" alt="Count's Down cover" onerror="this.style.display = 'none'" />
+                        <span class="project-badge badge-game">Game Jam</span>
+                    </div>
+                    <div class="project-body">
+                        <div class="project-title">Count's Down</div>
+                        <p class="project-desc">A roguelike FPS where your gun counts down from nine, and so does everything you kill. Built solo for GMTK Game Jam 2026.</p>
+                        <div class="project-tags"><span class="tag">Unity</span><span class="tag">C#</span><span class="tag">Roguelike</span><span class="tag">FPS</span></div>
                     </div>
                 </div>
 
@@ -1533,6 +1625,7 @@ Designing and implementing a mask-swapping mechanic that felt meaningful within 
                     data-modal-tags="Unity,C#,Game Jam,GGJ 2026,Team Project"
                 >
                     <div class="project-thumb">
+                        <div class="project-status status-finished">Finished</div>
                         <div class="project-thumb-bg" style="background: linear-gradient(135deg, #1a0a1f 0%, #3d0a3f 100%)">🎭</div>
                         <span class="project-badge badge-game">2nd Place</span>
                     </div>
@@ -1567,6 +1660,7 @@ Built entirely under a 48-hour deadline. Designed and implemented the core bubbl
                     data-modal-tags="Unity,C#,Game Jam,GGJ 2025,UI"
                 >
                     <div class="project-thumb">
+                        <div class="project-status status-finished">Finished</div>
                         <div class="project-thumb-bg" style="background: linear-gradient(135deg, #0a1a1f 0%, #0a2a3f 100%)">🫧</div>
                         <span class="project-badge badge-game">3rd Place</span>
                     </div>
@@ -1601,6 +1695,7 @@ Deepened my understanding of procedural content generation, modular level design
                     data-modal-tags="Unity,C#,Procedural Generation,Horror,Solo Project"
                 >
                     <div class="project-thumb">
+                        <div class="project-status status-dev">In Development</div>
                         <div class="project-thumb-bg" style="background: linear-gradient(135deg, #0a0a0a 0%, #2a2418 100%)">🚪</div>
                         <span class="project-badge badge-game">Personal</span>
                     </div>
@@ -1632,6 +1727,7 @@ Working within a well-known genre format taught me how small mechanical changes 
                     data-modal-tags="Unity,C#,Endless Runner,Game Design"
                 >
                     <div class="project-thumb">
+                        <div class="project-status status-dev">In Development</div>
                         <div class="project-thumb-bg" style="background: linear-gradient(135deg, #1a1208 0%, #3d2a0a 100%)">🦖</div>
                         <span class="project-badge badge-game">Personal</span>
                     </div>
@@ -1663,6 +1759,7 @@ This project gave me hands-on experience designing for accessibility and emotion
                     data-modal-tags="Unity,VR,Accessibility,Academic,Game Design"
                 >
                     <div class="project-thumb">
+                        <div class="project-status status-finished">Finished</div>
                         <div class="project-thumb-bg" style="background: linear-gradient(135deg, #0a1a14 0%, #0a3d2a 100%)">🏠</div>
                         <span class="project-badge badge-game">Academic</span>
                     </div>
@@ -1697,6 +1794,7 @@ This project pushed my skills in environmental storytelling, pacing a discovery-
                     data-modal-tags="Unity,C#,Narrative,Stealth,SDG3,Academic"
                 >
                     <div class="project-thumb">
+                        <div class="project-status status-finished">Finished</div>
                         <div class="project-thumb-bg" style="background: linear-gradient(135deg, #10101f 0%, #1a0a3f 100%)">🧠</div>
                         <span class="project-badge badge-game">Academic</span>
                     </div>
@@ -1706,123 +1804,155 @@ This project pushed my skills in environmental storytelling, pacing a discovery-
                         <div class="project-tags"><span class="tag">Unity</span><span class="tag">C#</span><span class="tag">Narrative</span><span class="tag">Stealth</span></div>
                     </div>
                 </div>
-            </div>
 
-            <!-- OTHER PROJECTS, lives inside Projects section -->
-            <div class="early-divider">
-                <div class="early-toggle-wrap">
-                    <button id="earlyToggleBtn">Show Other Projects <i class="arrow">▼</i></button>
+                <div
+                    class="project-card"
+                    data-category="jam"
+                    data-modal-title="Remains of a Legend"
+                    data-modal-badge="Game Jam"
+                    data-modal-badge-class="badge-game"
+                    data-modal-emoji="📜"
+                    data-modal-bg="linear-gradient(135deg,#1a140a,#3d2a0a)"
+                    data-modal-meta="Story Prototype • SICCA Game Jam 2025 • Low Poly"
+                    data-modal-desc="A story-driven prototype made for the SICCA Game Jam 2025, built with a low-poly visual style and a focus on deep lore and narrative."
+                    data-modal-detail="**Overview**
+A story-driven prototype made for the SICCA Game Jam 2025, built with a low-poly visual style and a focus on deep lore and narrative. The project was an exercise in delivering atmosphere and story within a short development window, leaning on environment and world details to hint at a much larger history.
+
+**What I Learned**
+Narrative design and low-poly worldbuilding: how to communicate a large, implied history through environment art and small details under tight jam constraints."
+                    data-modal-tags="Unity,C#,Game Jam,Narrative,Low Poly"
+                >
+                    <div class="project-thumb">
+                        <div class="project-status status-finished">Finished</div>
+                        <div class="project-thumb-bg" style="background: linear-gradient(135deg, #1a140a 0%, #3d2a0a 100%)">📜</div>
+                        <span class="project-badge badge-game">Game Jam</span>
+                    </div>
+                    <div class="project-body">
+                        <div class="project-title">Remains of a Legend</div>
+                        <p class="project-desc">A low-poly story prototype built for the SICCA Game Jam 2025, focused on deep lore and atmospheric worldbuilding.</p>
+                        <div class="project-tags"><span class="tag">Unity</span><span class="tag">C#</span><span class="tag">Narrative</span><span class="tag">Game Jam</span></div>
+                    </div>
                 </div>
 
-                <div id="earlyList">
-                    <div class="early-item">
-                        <div class="early-header">
-                            <div class="early-header-left">
-                                <div class="early-game-title">Remains of a Legend</div>
-                                <div class="early-game-teaser"><span>What I learned:</span> Narrative design & low-poly storytelling, SICCA Game Jam 2025</div>
-                            </div>
-                            <div class="early-chevron"></div>
-                        </div>
-                        <div class="early-body">
-                            <div class="early-body-inner">
-                                <div class="early-body-content">
-                                    <div class="early-img-placeholder" style="background: linear-gradient(135deg, #1a140a 0%, #3d2a0a 100%)">📜</div>
-                                    <div>
-                                        <div class="early-detail-title">Remains of a Legend</div>
-                                        <div class="early-detail-learned">What I learned: Narrative Design & Low-Poly Worldbuilding</div>
-                                        <p class="early-detail-desc">A story-driven prototype made for the SICCA Game Jam 2025, built with a low-poly visual style and a focus on deep lore and narrative. The project was an exercise in delivering atmosphere and story within a short development window, leaning on environment and world details to hint at a much larger history.</p>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
+                <div
+                    class="project-card"
+                    data-category="personal"
+                    data-modal-title="2D Roguelike Dungeon Generator"
+                    data-modal-badge="Tool"
+                    data-modal-badge-class="badge-game"
+                    data-modal-emoji="🗺️"
+                    data-modal-bg="linear-gradient(135deg,#0a1a0f,#0a3d1f)"
+                    data-modal-meta="Procedural Tool • Personal Project • Unity"
+                    data-modal-desc="A 2D roguelike dungeon generator that procedurally builds connected rooms and corridors into a coherent map each run."
+                    data-modal-detail="**Overview**
+A 2D roguelike dungeon generator that procedurally builds connected rooms and corridors into a coherent map each run.
 
-                    <div class="early-item">
-                        <div class="early-header">
-                            <div class="early-header-left">
-                                <div class="early-game-title">2D Roguelike Dungeon Generator</div>
-                                <div class="early-game-teaser"><span>What I learned:</span> Procedural map generation algorithms</div>
-                            </div>
-                            <div class="early-chevron"></div>
-                        </div>
-                        <div class="early-body">
-                            <div class="early-body-inner">
-                                <div class="early-body-content">
-                                    <div class="early-img-placeholder" style="background: linear-gradient(135deg, #0a1a0f 0%, #0a3d1f 100%)">🗺️</div>
-                                    <div>
-                                        <div class="early-detail-title">2D Roguelike Dungeon Map Generator</div>
-                                        <div class="early-detail-learned">What I learned: Procedural Generation Algorithms</div>
-                                        <p class="early-detail-desc">A 2D roguelike dungeon generator that procedurally builds connected rooms and corridors into a coherent map each run. This project was focused purely on the generation algorithm itself: room placement, corridor connections, and ensuring every generated layout is fully traversable.</p>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
+**Technical Focus**
+This project was focused purely on the generation algorithm itself: room placement, corridor connections, and ensuring every generated layout is fully traversable with no unreachable areas.
 
-                    <div class="early-item">
-                        <div class="early-header">
-                            <div class="early-header-left">
-                                <div class="early-game-title">2D Assetless Platformer</div>
-                                <div class="early-game-teaser"><span>What I learned:</span> Dash mechanics & time-rewind systems</div>
-                            </div>
-                            <div class="early-chevron"></div>
-                        </div>
-                        <div class="early-body">
-                            <div class="early-body-inner">
-                                <div class="early-body-content">
-                                    <div class="early-img-placeholder" style="background: linear-gradient(135deg, #0a0a1a 0%, #1a1a3d 100%)">⬛</div>
-                                    <div>
-                                        <div class="early-detail-title">2D Assetless Platformer</div>
-                                        <div class="early-detail-learned">What I learned: Dash Mechanics & Time-Rewind Systems</div>
-                                        <p class="early-detail-desc">A prototype built with no art assets, focused entirely on mechanics: the player dashes through specific walls to progress, and can rewind time to undo movement and re-attempt sections of the level. The challenge was making both systems work together cleanly, especially handling state when rewinding through a wall-dash.</p>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
+**What I Learned**
+Procedural generation algorithms and how to guarantee valid, playable layouts from randomized inputs."
+                    data-modal-tags="Unity,C#,Procedural Generation,Roguelike,Tool"
+                >
+                    <div class="project-thumb">
+                        <div class="project-status status-finished">Finished</div>
+                        <div class="project-thumb-bg" style="background: linear-gradient(135deg, #0a1a0f 0%, #0a3d1f 100%)">🗺️</div>
+                        <span class="project-badge badge-game">Tool</span>
                     </div>
-
-                    <div class="early-item">
-                        <div class="early-header">
-                            <div class="early-header-left">
-                                <div class="early-game-title">Space Invaders</div>
-                                <div class="early-game-teaser"><span>What I learned:</span> Classic arcade mechanics & object pooling</div>
-                            </div>
-                            <div class="early-chevron"></div>
-                        </div>
-                        <div class="early-body">
-                            <div class="early-body-inner">
-                                <div class="early-body-content">
-                                    <div class="early-img-placeholder" style="background: linear-gradient(135deg, #0a0f1a 0%, #0a1f3d 100%)">👽</div>
-                                    <div>
-                                        <div class="early-detail-title">Space Invaders</div>
-                                        <div class="early-detail-learned">What I learned: Classic Arcade Mechanics & Object Pooling</div>
-                                        <p class="early-detail-desc">A recreation of the classic Space Invaders formula: enemy grid movement patterns, increasing difficulty, and projectile-heavy gameplay. Used as a foundation for practicing clean object pooling and input handling.</p>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
+                    <div class="project-body">
+                        <div class="project-title">2D Roguelike Dungeon Generator</div>
+                        <p class="project-desc">A procedural generator that builds fully-traversable roguelike dungeon maps of rooms and corridors on every run.</p>
+                        <div class="project-tags"><span class="tag">Unity</span><span class="tag">C#</span><span class="tag">Procedural</span><span class="tag">Roguelike</span></div>
                     </div>
+                </div>
 
-                    <div class="early-item">
-                        <div class="early-header">
-                            <div class="early-header-left">
-                                <div class="early-game-title">Mobile Quiz Game</div>
-                                <div class="early-game-teaser"><span>What I learned:</span> Data-driven UI & mobile prototyping</div>
-                            </div>
-                            <div class="early-chevron"></div>
-                        </div>
-                        <div class="early-body">
-                            <div class="early-body-inner">
-                                <div class="early-body-content">
-                                    <div class="early-img-placeholder" style="background: linear-gradient(135deg, #1a0f0a 0%, #3d1f0a 100%)">❓</div>
-                                    <div>
-                                        <div class="early-detail-title">Mobile Quiz Game (Prototype)</div>
-                                        <div class="early-detail-learned">What I learned: Data-Driven UI & Mobile Prototyping</div>
-                                        <p class="early-detail-desc">A mobile quiz game prototype focused on a clean, data-driven question/answer system and mobile-friendly UI flow, laying groundwork for UI patterns later reused in NEON://GHOST_PROTOCOL/.</p>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
+                <div
+                    class="project-card"
+                    data-category="personal"
+                    data-modal-title="2D Assetless Platformer"
+                    data-modal-badge="Prototype"
+                    data-modal-badge-class="badge-game"
+                    data-modal-emoji="⬛"
+                    data-modal-bg="linear-gradient(135deg,#0a0a1a,#1a1a3d)"
+                    data-modal-meta="Mechanics Prototype • Personal Project • Unity"
+                    data-modal-desc="A prototype built with no art assets, focused entirely on mechanics: dashing through specific walls and rewinding time to re-attempt sections."
+                    data-modal-detail="**Overview**
+A prototype built with no art assets, focused entirely on mechanics: the player dashes through specific walls to progress, and can rewind time to undo movement and re-attempt sections of the level.
+
+**Technical Highlights**
+The core challenge was making both systems work together cleanly, especially handling state correctly when rewinding through a wall-dash.
+
+**What I Learned**
+Dash mechanics, time-rewind systems, and clean state management between interacting mechanics."
+                    data-modal-tags="Unity,C#,Prototype,Mechanics"
+                >
+                    <div class="project-thumb">
+                        <div class="project-status status-finished">Finished</div>
+                        <div class="project-thumb-bg" style="background: linear-gradient(135deg, #0a0a1a 0%, #1a1a3d 100%)">⬛</div>
+                        <span class="project-badge badge-game">Prototype</span>
+                    </div>
+                    <div class="project-body">
+                        <div class="project-title">2D Assetless Platformer</div>
+                        <p class="project-desc">A mechanics-first prototype: dash through specific walls and rewind time to re-attempt sections of the level.</p>
+                        <div class="project-tags"><span class="tag">Unity</span><span class="tag">C#</span><span class="tag">Prototype</span><span class="tag">Mechanics</span></div>
+                    </div>
+                </div>
+
+                <div
+                    class="project-card"
+                    data-category="personal"
+                    data-modal-title="Space Invaders"
+                    data-modal-badge="Learning"
+                    data-modal-badge-class="badge-game"
+                    data-modal-emoji="👽"
+                    data-modal-bg="linear-gradient(135deg,#0a0f1a,#0a1f3d)"
+                    data-modal-meta="Arcade Recreation • Personal Project • Unity"
+                    data-modal-desc="A recreation of the classic Space Invaders formula, used as a foundation for practicing clean object pooling and input handling."
+                    data-modal-detail="**Overview**
+A recreation of the classic Space Invaders formula: enemy grid movement patterns, increasing difficulty, and projectile-heavy gameplay.
+
+**What I Learned**
+Classic arcade mechanics and object pooling, used as a foundation for practicing clean, performant projectile handling and input systems."
+                    data-modal-tags="Unity,C#,Arcade,Object Pooling"
+                >
+                    <div class="project-thumb">
+                        <div class="project-status status-finished">Finished</div>
+                        <div class="project-thumb-bg" style="background: linear-gradient(135deg, #0a0f1a 0%, #0a1f3d 100%)">👽</div>
+                        <span class="project-badge badge-game">Learning</span>
+                    </div>
+                    <div class="project-body">
+                        <div class="project-title">Space Invaders</div>
+                        <p class="project-desc">A recreation of the arcade classic, built to practice clean object pooling, projectile handling, and input systems.</p>
+                        <div class="project-tags"><span class="tag">Unity</span><span class="tag">C#</span><span class="tag">Arcade</span><span class="tag">Object Pooling</span></div>
+                    </div>
+                </div>
+
+                <div
+                    class="project-card"
+                    data-category="personal"
+                    data-modal-title="Mobile Quiz Game"
+                    data-modal-badge="Prototype"
+                    data-modal-badge-class="badge-game"
+                    data-modal-emoji="❓"
+                    data-modal-bg="linear-gradient(135deg,#1a0f0a,#3d1f0a)"
+                    data-modal-meta="Mobile Prototype • Personal Project • Unity"
+                    data-modal-desc="A mobile quiz game prototype focused on a clean, data-driven question/answer system and mobile-friendly UI flow."
+                    data-modal-detail="**Overview**
+A mobile quiz game prototype focused on a clean, data-driven question/answer system and mobile-friendly UI flow.
+
+**What I Learned**
+Data-driven UI and mobile prototyping, laying groundwork for UI patterns later reused in NEON://GHOST_PROTOCOL/."
+                    data-modal-tags="Unity,C#,Mobile,UI,Prototype"
+                >
+                    <div class="project-thumb">
+                        <div class="project-status status-finished">Finished</div>
+                        <div class="project-thumb-bg" style="background: linear-gradient(135deg, #1a0f0a 0%, #3d1f0a 100%)">❓</div>
+                        <span class="project-badge badge-game">Prototype</span>
+                    </div>
+                    <div class="project-body">
+                        <div class="project-title">Mobile Quiz Game</div>
+                        <p class="project-desc">A mobile prototype with a clean, data-driven question/answer system and mobile-friendly UI flow.</p>
+                        <div class="project-tags"><span class="tag">Unity</span><span class="tag">C#</span><span class="tag">Mobile</span><span class="tag">UI</span></div>
                     </div>
                 </div>
             </div>
@@ -1887,7 +2017,7 @@ This project pushed my skills in environmental storytelling, pacing a discovery-
                 <div class="achievement-card">
                     <div class="achievement-icon">🎮</div>
                     <div>
-                        <div class="achievement-title">5+ Game Jams Completed</div>
+                        <div class="achievement-title">7 Game Jams Completed</div>
                         <div class="achievement-sub">Solo & team projects</div>
                     </div>
                 </div>
@@ -1964,7 +2094,7 @@ This project pushed my skills in environmental storytelling, pacing a discovery-
                         <div class="stat-label">Years with Unity</div>
                     </div>
                     <div class="stat-card">
-                        <div class="stat-num">6</div>
+                        <div class="stat-num">7</div>
                         <div class="stat-label">Game Jams Completed</div>
                     </div>
                     <div class="stat-card">
@@ -2268,44 +2398,6 @@ This project pushed my skills in environmental storytelling, pacing a discovery-
                 document.getElementById("email").value = "";
                 document.getElementById("message").value = "";
             }
-
-            // ── Early Projects accordion ─────────────────────────────────────
-            const earlyToggleBtn = document.getElementById("earlyToggleBtn");
-            const earlyList = document.getElementById("earlyList");
-            const earlyItems = document.querySelectorAll(".early-item");
-            const projectsSection = document.getElementById("projects");
-
-            function closeAllRows() {
-                earlyItems.forEach((item) => item.classList.remove("open"));
-            }
-
-            earlyToggleBtn.addEventListener("click", () => {
-                const isOpen = earlyList.classList.toggle("open");
-                earlyToggleBtn.classList.toggle("open", isOpen);
-                earlyToggleBtn.childNodes[0].textContent = isOpen ? "Hide Other Projects " : "Show Other Projects ";
-                if (!isOpen) closeAllRows();
-            });
-
-            earlyItems.forEach((item) => {
-                const header = item.querySelector(".early-header");
-                header.addEventListener("click", () => {
-                    const isAlreadyOpen = item.classList.contains("open");
-                    closeAllRows();
-                    if (!isAlreadyOpen) item.classList.add("open");
-                });
-            });
-
-            // Close rows when scrolling away from the projects section
-            const earlyObserver = new IntersectionObserver(
-                (entries) => {
-                    entries.forEach((entry) => {
-                        if (!entry.isIntersecting) closeAllRows();
-                    });
-                },
-                { threshold: 0.03 },
-            );
-
-            earlyObserver.observe(projectsSection);
 
             // ── Inject project meta lines from data-modal-meta ───────────────
             cards.forEach((card) => {
